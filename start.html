@@ -4,17 +4,21 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link href="style.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Press start to begin</h1>
+        <div class="title">
+            <p class="glitch">
+                <span aria-hidden="true">Click to begin</span>
+                Click to begin
+                <span aria-hidden="true">Click to begin</span>
+            </p>
+        </div>
         <button class="button" id="start">start</button>
         <p id="displayText"></p>
         <div id="choiceButtonContainer"></div>
-        <!-- <div id="restart"></div> -->
-        
-
-        <script src="function.js" defer></script>
-        
+    
+        <script src="script/function.js" defer></script>
+        <script src="script/gameEvent.js" defer></script>
     </body>
 </html>

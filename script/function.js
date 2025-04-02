@@ -1,23 +1,10 @@
 const start = document.getElementById('start');
 const choice = document.getElementsByClassName('choice');
-const firstMessage = "Hi, nice to meet you. Who are you?";
+const firstMessage = 'Hi, nice to meet you.\nWho are you?';
 const firstExit = "Have a nice day";
 const choiceButtonContainer = document.getElementById("choiceButtonContainer");
+const title = document.getElementsByClassName("title");
 // const restart = document.getElementById("restart");
-
-//when the start button was clicked
-start.addEventListener('click', function() {
-    if (start.classList.contains("active")) return; 
-    start.classList.add("active");
-    start.style.display = "none";
-    textPrinter('displayText', firstMessage, 50, function() {
-        choiceButtonContainer.style.display = "block";
-        addButton("Someone who cares", "1");
-        addButton("Assignment marker", "2");
-    });
-    
-    
-});
 
 //function to print the text letter by letter
 function textPrinter(destination, message, speed, callback) {
@@ -25,7 +12,7 @@ function textPrinter(destination, message, speed, callback) {
     const displayElement = document.getElementById(destination);
     displayElement.innerHTML = "";
     var letterDisplay = setInterval(function() {
-        displayElement.innerHTML += message.charAt(index);
+        displayElement.textContent += message.charAt(index);
         index++;
         if (index >= message.length) {
             clearInterval(letterDisplay);
@@ -46,7 +33,7 @@ function addButton(choice, step) {
     button.addEventListener('click', function() {
         choiceButtonContainer.style.display = 'none';
         if (button.classList.contains("2")) {
-            textPrinter('displayText', firstExit, 50, function () {
+            textPrinter('displayText', firstExit, 100, function () {
                 start.style.display = "block";
                 start.innerHTML = "restart";
                 start.classList.remove("active");
