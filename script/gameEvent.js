@@ -9,6 +9,4 @@ start.addEventListener('click', function() {
         addButton("Someone who cares", "1");
         addButton("Assignment marker", "2");
     });
-    
-    
 });

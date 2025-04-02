@@ -1,0 +1,41 @@
+{
+  "questions": {
+    "start": {
+      "text": "You are in a dark forest. Do you go left or right?",
+      "choices": {
+        "left": "path_left",
+        "right": "path_right"
+      }
+    },
+    "path_left": {
+      "text": "You see a river. Do you swim across or walk along the shore?",
+      "choices": {
+        "swim": "swim_river",
+        "walk": "walk_shore"
+      }
+    },
+    "path_right": {
+      "text": "You find a cave. Do you enter or keep walking?",
+      "choices": {
+        "enter": "enter_cave",
+        "walk": "walk_past"
+      }
+    },
+    "swim_river": {
+      "text": "The current is strong, but you make it across safely.",
+      "choices": {}
+    },
+    "walk_shore": {
+      "text": "You find a bridge and cross safely.",
+      "choices": {}
+    },
+    "enter_cave": {
+      "text": "Inside, you find treasure!",
+      "choices": {}
+    },
+    "walk_past": {
+      "text": "You keep walking and find a peaceful village.",
+      "choices": {}
+    }
+  }
+}
