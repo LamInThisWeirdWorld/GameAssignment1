@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What happened?</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
+    <style>
+        /* Back arrow button styling */
+        #back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #back-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+        
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            background-color: black; /* Optional: Set a background color */
+            color: white; /* Optional: Set text color */
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back arrow button -->
+    <button id="back-button" onclick="goBack()">←</button>
+
+    <div class="container">
+        <div id="story-text"></div>
+        <div id="name-input-container">
+            <button id="submit-name">Tell Me More</button>
+        </div>
+        <div id="choices-container" style="display: none;">
+            <p id="choice-text"></p>
+            <button class="choice-btn" data-choice="1">Who is Elliot?</button>
+            <button class="choice-btn" data-choice="2">Why do I feel like I know him?</button>
+        </div>
+        <p id="glitch-text" style="display: none;"></p>
+    </div>
+
+    <script>
+        // Function to navigate back to torch.html
+        function goBack() {
+            window.location.href = "torch.html";
+        }
+    </script>
+    <script src="script1.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Special Elite', monospace;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    font-size: 1.4em;
+    line-height: 1.6;
+}
+
+#story-text {
+    min-height: 120px;
+    font-family: 'Special Elite', monospace;
+    white-space: pre-line;
+}
+
+#name-input-container {
+    display: none;
+    margin-top: 50px; /* Add spacing to push the "Continue" button further down */
+    opacity: 0; /* Start with invisible */
+    animation: fadeIn 1s ease-in-out forwards; /* Add fade-in animation */
+}
+
+input, button {
+    background: none;
+    /* border: 2px solid white; */
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 10px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border-radius: 10px; /* Rounded corners */
+    font-family: 'Special Elite', monospace;
+}
+
+button {
+    background-color: #333; /* Dark gray background */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); 
+}
+
+button:hover {
+    background: white;
+    color: black;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 8px rgba(255, 255, 255, 0.2); /* Glow effect */
+}
+
+.choice-btn {
+    display: none;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px; /* Larger padding for better appearance */
+    background-color: #444; /* Slightly lighter gray */
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.choice-btn:hover {
+    background-color: #666; /* Lighter gray on hover */
+    color: black;
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+#glitch-text {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+    animation: glitch 0.2s infinite alternate;
+}
+
+@keyframes glitch {
+    0% { opacity: 1; transform: translateX(2px); }
+    50% { opacity: 0.6; transform: translateX(-2px); }
+    100% { opacity: 1; transform: translateX(1px); }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
