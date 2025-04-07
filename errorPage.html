@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            background-image: url('static.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clipart {
+            position: absolute;
+            width: 450px; /* Set a fixed width for the images */
+            height: 250px; /* Set a fixed height for the images */
+            object-fit: cover;
+            border: 2px solid black;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fullscreen animation for the final click */
+        @keyframes fillScreen {
+            0% {
+                width: 300px;
+                height: 200px;
+                top: var(--top);
+                left: var(--left);
+                opacity: 1;
+            }
+            100% {
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                opacity: 1;
+            }
+        }
+
+        .fullscreen {
+            animation: fillScreen 300ms forwards;
+            z-index: 9999; /* Ensure it appears on top */
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container"></div>
+
+    <script>
+        let clickCount = 0; // Track the number of clicks
+        const maxClicks = 10; // Maximum number of clicks before redirecting
+
+        document.body.addEventListener('click', function () {
+            const imageContainer = document.getElementById('image-container');
+
+            // Add a new download.gif image
+            if (clickCount < maxClicks) {
+                const newImage = document.createElement('img');
+                newImage.src = 'download.gif';
+                newImage.alt = 'This is an Anti-NFT Site';
+                newImage.className = 'clipart';
+
+                // Randomize position within the screen
+                const randomTop = Math.random() * (window.innerHeight - 200); // Ensure it stays within bounds
+                const randomLeft = Math.random() * (window.innerWidth - 300); // Ensure it stays within bounds
+
+                newImage.style.top = `${randomTop}px`;
+                newImage.style.left = `${randomLeft}px`;
+
+                // Set custom properties for animation
+                newImage.style.setProperty('--top', `${randomTop}px`);
+                newImage.style.setProperty('--left', `${randomLeft}px`);
+
+                imageContainer.appendChild(newImage);
+
+                clickCount++;
+            }
+
+            // On the final click, animate the last image to fill the screen
+            if (clickCount === maxClicks) {
+                const lastImage = document.querySelector('.clipart:last-child');
+                lastImage.classList.add('fullscreen');
+
+                // Wait for the animation to complete before redirecting
+                setTimeout(() => {
+                    window.location.href = 'next.html';
+                }, 1000); // 1 second for the animation
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div id="story-text"></div>
+        <div id="choices-container" style="display: none;">
+            <p id="choice-text"></p>
+            <button class="choice-btn" data-choice="1">Who is Elliot?</button>
+            <button class="choice-btn" data-choice="2">Why do I feel like I know him?</button>
+        </div>
+        <p id="glitch-text" style="display: none;"></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const choicesContainer = document.getElementById("choices-container");
+            const choiceText = document.getElementById("choice-text");
+            const glitchText = document.getElementById("glitch-text");
+
+            // Display the choices after a delay
+            setTimeout(() => {
+                choicesContainer.style.display = "block";
+                choiceText.innerText = "Something about this feels... off. What do you want to ask?";
+
+                // Handle choice button clicks
+                const choiceButtons = document.querySelectorAll(".choice-btn");
+                choiceButtons.forEach((button) => {
+                    button.addEventListener("click", function () {
+                        let choice = this.getAttribute("data-choice");
+                        choicesContainer.style.display = "none";
+
+                        if (choice === "1") {
+                            glitchEffect("Elliot is [your name]… no, that’s not right.");
+                        } else {
+                            glitchEffect("You’ve been here before. Haven’t you?");
+                        }
+                    });
+                });
+            }, 5000);
+
+            // Glitch effect for text
+            function glitchEffect(message) {
+                let glitchyMessage = "";
+                let chars = message.split("");
+
+                let interval = setInterval(() => {
+                    for (let i = 0; i < chars.length; i++) {
+                        if (Math.random() > 0.8) {
+                            chars[i] = randomGlitchChar();
+                        }
+                    }
+                    glitchyMessage = chars.join("");
+                    glitchText.innerText = glitchyMessage;
+                    glitchText.style.display = "block";
+                }, 100);
+
+                setTimeout(() => {
+                    clearInterval(interval);
+                    glitchText.innerText = message;
+                    setTimeout(() => {
+                        glitchText.style.display = "none";
+                    }, 2000);
+                }, 3000);
+            }
+
+            // Generate random glitch characters
+            function randomGlitchChar() {
+                const glitchChars = "!@#$%^&*()_+=-[]{}|;:<>?";
+                return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            }
+        });
+    </script>
+
+</body>
+</html>
