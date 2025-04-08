@@ -81,8 +81,7 @@
             function goBack() {
                 document.body.classList.add('fade-out');
                 setTimeout(() => {
-                    // TO LINK WITH A NEW PAGE HERE //
-                    // window.location.href = "choice-page.html";
+                    window.location.href = "errorPage.html";
                 }, 500);
             }
 
@@ -102,7 +101,9 @@
                         }, 1000);
                     }
                 }
-                type();
+                setTimeout(() => {
+                    type();
+                }, 1000); // Delay before starting the typewriter effect
             }
 
             // Typewriter effect for choice text
@@ -146,8 +147,9 @@
                         // Add a fade-out animation before redirecting
                         document.body.classList.add('fade-out');
                         setTimeout(() => {
+                             // TO LINK WITH A NEW PAGE HERE //
                             // Redirect to the next page after the animation
-                            window.location.href = "uDontExist.html";
+                            // window.location.href = "NewPage.html";
                         }, 1000); // Match the animation duration
                     } else {
                         glitchEffect("YOU DON'T EVEN CARE, DO YOU?!");
