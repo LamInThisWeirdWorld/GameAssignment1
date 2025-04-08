@@ -16,6 +16,8 @@ function myFunction() {
       text = "You? You don’t know what it’s like to lose someone like this.";
   } else if (NAME.toLowerCase() === "brother") {
       text = "My brother... He’s out there. I can feel it. I just need to find him before it’s too late.";
+  } else if (NAME.toLowerCase() === "tom" || NAME.toLowerCase() === "anya" || NAME.toLowerCase() === "kate" || NAME.toLowerCase() === "david") {
+    text = "You think this is a game? You sit there, safe behind your screen, while I’m losing everything. Tell me... what gives you the right?";
   } else if (NAME.toLowerCase() === "elliot") {
       text = "Yes, I’m Elliot. And I won’t stop until I find my twin brother.";
   } else {

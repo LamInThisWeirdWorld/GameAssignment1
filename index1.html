@@ -26,19 +26,13 @@
             box-shadow: none; /* Change color on hover */
         }
         
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-            margin: 0;
-            background-color: black; /* Optional: Set a background color */
-            color: white; /* Optional: Set text color */
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         }
 
-        .container {
-            text-align: center;
+        body.fade-out {
+            opacity: 0;
         }
     </style>
 </head>
@@ -48,25 +42,76 @@
     <button id="back-button" onclick="goBack()">←</button>
 
     <div class="container">
+        <br>
+        <br>
+        <br>
         <div id="story-text"></div>
         <div id="name-input-container">
             <button id="submit-name" class="choice-btn">Tell Me More</button>
         </div>
-        <div id="choices-container" style="display: none;">
-            <p id="choice-text"></p>
-            <button class="choice-btn" data-choice="1">Who is Elliot?</button>
-            <button class="choice-btn" data-choice="2">Why do I feel like I know him?</button>
-        </div>
-        <p id="glitch-text" style="display: none;"></p>
     </div>
 
     <script>
-        // Function to navigate back to torch.html
-        function goBack() {
-            window.location.href = "torch.html";
+        document.addEventListener("DOMContentLoaded", function () {
+    const storyText = document.getElementById("story-text");
+    const nameInputContainer = document.getElementById("name-input-container");
+    const submitNameBtn = document.getElementById("submit-name");
+
+    const introText = [
+        "Elliot is just a normal high school student...",
+        "Or so he believes.",
+        "Until one day, his twin brother vanishes...",
+        "And no one remembers him."
+    ];
+
+    // Function to navigate back to torch.html
+    function goBack() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = "torch.html";
+            }, 500);
         }
+
+    let index = 0;
+    let charIndex = 0;
+    let currentText = "";
+
+    function typeText() {
+        if (index < introText.length) {
+            if (charIndex < introText[index].length) {
+                currentText += introText[index][charIndex];
+                storyText.innerHTML = currentText;
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                index++;
+                charIndex = 0;
+                currentText += "<br><br>";
+                setTimeout(typeText, 500);
+            }
+        } else {
+            setTimeout(() => {
+                nameInputContainer.style.display = "block";
+            }, 500);
+        }
+    }
+
+    // Handle "Continue" button click
+    submitNameBtn.addEventListener("click", function () {
+        // Add a fade-out animation before redirecting
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            // Redirect to the next page after the animation
+            window.location.href = "uDontExist.html";
+        }, 1000); // Match the animation duration
+    });
+
+    setTimeout(() => {
+        typeText();
+    }, 1000);
+});
+
     </script>
-    <script src="script1.js"></script>
 
 </body>
 </html>

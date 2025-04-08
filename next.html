@@ -6,45 +6,154 @@
     <title>Next Page</title>
     <link rel="stylesheet" href="styles1.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
+    <style>
+        #notation {
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            display: none;
+            line-height: 2rem; /* Space between vertical dots */
+        }
+
+        #choice-text {
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            display: none;
+        }
+
+        #back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #back-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+
+        body {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
-
+    <button id="back-button" onclick="goBack()">←</button>
     <div class="container">
-        <div id="story-text"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="notation"></div>
         <div id="choices-container" style="display: none;">
             <p id="choice-text"></p>
-            <button class="choice-btn" data-choice="1">Who is Elliot?</button>
-            <button class="choice-btn" data-choice="2">Why do I feel like I know him?</button>
+            <div id="buttons-container" style="display: none;">
+                <button class="choice-btn" data-choice="1">Talk to Elliot</button>
+                <button class="choice-btn" data-choice="2">Ignore and Leave</button>
+            </div>
         </div>
         <p id="glitch-text" style="display: none;"></p>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const notation = document.getElementById("notation");
             const choicesContainer = document.getElementById("choices-container");
             const choiceText = document.getElementById("choice-text");
+            const buttonsContainer = document.getElementById("buttons-container");
             const glitchText = document.getElementById("glitch-text");
 
-            // Display the choices after a delay
-            setTimeout(() => {
+            // Function to navigate back to torch.html
+            function goBack() {
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    // TO LINK WITH A NEW PAGE HERE //
+                    // window.location.href = "choice-page.html";
+                }, 500);
+            }
+
+            // Typewriter effect for vertical notation
+            function typeWriterNotation(text, callback) {
+                let i = 0;
+                notation.style.display = "block";
+                function type() {
+                    if (i < text.length) {
+                        notation.innerHTML += text.charAt(i) + "<br>"; // Add vertical line breaks
+                        i++;
+                        setTimeout(type, 300); // Adjust typing speed here
+                    } else {
+                        setTimeout(() => {
+                            notation.style.display = "none"; // Hide notation after it's done
+                            callback(); // Proceed to the next step
+                        }, 1000);
+                    }
+                }
+                type();
+            }
+
+            // Typewriter effect for choice text
+            function typeWriterChoiceText(text, callback) {
+                let i = 0;
                 choicesContainer.style.display = "block";
-                choiceText.innerText = "Something about this feels... off. What do you want to ask?";
+                choiceText.style.display = "block";
+                function type() {
+                    if (i < text.length) {
+                        choiceText.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50); // Adjust typing speed here
+                    } else {
+                        callback(); // Proceed to the next step
+                    }
+                }
+                type();
+            }
 
-                // Handle choice button clicks
-                const choiceButtons = document.querySelectorAll(".choice-btn");
-                choiceButtons.forEach((button) => {
-                    button.addEventListener("click", function () {
-                        let choice = this.getAttribute("data-choice");
-                        choicesContainer.style.display = "none";
-
-                        if (choice === "1") {
-                            glitchEffect("Elliot is [your name]… no, that’s not right.");
-                        } else {
-                            glitchEffect("You’ve been here before. Haven’t you?");
-                        }
-                    });
+            // Display the choices after the notation
+            function showChoices() {
+                typeWriterChoiceText("Something about this feels... off.", () => {
+                    // Show the buttons 1 second after the choice text appears
+                    setTimeout(() => {
+                        buttonsContainer.style.display = "block";
+                    }, 1000);
                 });
-            }, 5000);
+            }
+
+            // Start the typewriter effect for the notation
+            typeWriterNotation("...\n.\n.", showChoices);
+
+            // Handle choice button clicks
+            const choiceButtons = document.querySelectorAll(".choice-btn");
+            choiceButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    let choice = this.getAttribute("data-choice");
+                    choicesContainer.style.display = "none";
+
+                    if (choice === "1") {
+                        // Add a fade-out animation before redirecting
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            // Redirect to the next page after the animation
+                            window.location.href = "uDontExist.html";
+                        }, 1000); // Match the animation duration
+                    } else {
+                        glitchEffect("YOU DON'T EVEN CARE, DO YOU?!");
+                    }
+                });
+            });
 
             // Glitch effect for text
             function glitchEffect(message) {
@@ -68,7 +177,12 @@
                     setTimeout(() => {
                         glitchText.style.display = "none";
                     }, 2000);
-                }, 3000);
+                }, 2000);
+
+                setTimeout(() => {
+                    // Redirect to the next page after the animation
+                    window.location.href = "torch.html";
+                }, 4000); // Match the animation duration
             }
 
             // Generate random glitch characters

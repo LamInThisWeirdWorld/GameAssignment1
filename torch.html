@@ -187,6 +187,15 @@
             transform: scale(1.2); /* Slightly enlarge the button on hover */
         }
 
+        body {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        body.fade-out {
+            opacity: 0;
+        }
+
     #shadow {
         position: fixed;
         top: 0;
@@ -237,7 +246,10 @@ function update(e){
 update({clientX: -10, clientY: -400});
 
 function startGame() {
+    document.body.classList.add('fade-out');
+            setTimeout(() => {
             window.location.href = "index1.html";
+        }, 1500);
         }
 
 document.addEventListener('mousemove',update);
