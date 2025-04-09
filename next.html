@@ -77,14 +77,6 @@
             const buttonsContainer = document.getElementById("buttons-container");
             const glitchText = document.getElementById("glitch-text");
 
-            // Function to navigate back to torch.html
-            function goBack() {
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = "errorPage.html";
-                }, 500);
-            }
-
             // Typewriter effect for vertical notation
             function typeWriterNotation(text, callback) {
                 let i = 0;
@@ -192,7 +184,16 @@
                 const glitchChars = "!@#$%^&*()_+=-[]{}|;:<>?";
                 return glitchChars[Math.floor(Math.random() * glitchChars.length)];
             }
+
         });
+
+        // Function to navigate back to torch.html
+        function goBack() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = "errorPage.html";
+            }, 500);
+        }
     </script>
 
 </body>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Into Elliot's Mind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('static-tv-head.gif') no-repeat center center fixed; /* Use the provided image */
+            background-size: cover;
+            font-family: 'Special Elite', monospace;
+            overflow: hidden;
+            position: relative;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        #back-button {
+            position: fixed;
+            top: 30px;
+            left: 0px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10; /* Ensure the button is above other elements */
+            transition: transform 0.3s ease;
+            font-family: 'Special Elite', monospace;
+        }
+
+        #back-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+
+        /* Sheer black overlay for readability */
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1); /* Start with full black opacity */
+            z-index: 1;
+            transition: background-color 2s ease-in-out;
+        }
+
+        #message {
+            position: relative;
+            z-index: 2; /* Ensure the text is above the overlay */
+            color: red;
+            font-size: 2rem;
+            text-align: center;
+            opacity: 1; /* Start visible for typewriter effect */
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+    </style>
+</head>
+<body>
+    <button id="back-button" onclick="goBack()">←</button>
+    <div id="overlay"></div> <!-- Sheer black overlay -->
+    <div id="message"></div> <!-- Empty message container for typewriter effect -->
+
+    <script>
+        // Gradually reduce the overlay opacity from 1 to 0.6
+        setTimeout(() => {
+            const overlay = document.getElementById("overlay");
+            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.6)"; // Transition to 60% opacity
+        }, 3000); // Start the transition immediately
+
+        // Typewriter effect for the message
+        const messageText = "Step into Elliot’s mind.\n\nPlay the game.\n\nUnravel the truth… if you dare.";
+        const messageElement = document.getElementById("message");
+        let index = 0;
+
+        function typeWriter() {
+            if (index < messageText.length) {
+                messageElement.innerHTML += messageText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50); // Adjust typing speed here
+            } else {
+                // Fade out the message after 5 seconds
+                setTimeout(() => {
+                    messageElement.style.opacity = "0"; // Fade out the message
+                    setTimeout(() => {
+                        messageElement.style.display = "none"; // Remove the message from the screen
+                    }, 1000); // Wait for the fade-out transition to complete
+                }, 3000); // Display the message for 5 seconds after typing completes
+            }
+        }
+
+        // Start the typewriter effect after the overlay transition
+        setTimeout(typeWriter, 500); // Delay to sync with overlay transition
+
+        // Function to navigate back to next.html
+        function goBack() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = "newPage.html"; // Ensure next.html exists in the same directory
+            }, 500);
+        }
+    </script>
+</body>
+</html>
