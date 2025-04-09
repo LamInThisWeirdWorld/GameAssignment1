@@ -65,12 +65,6 @@
     ];
 
     // Function to navigate back to torch.html
-    function goBack() {
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-                window.location.href = "torch.html";
-            }, 500);
-        }
 
     let index = 0;
     let charIndex = 0;
@@ -94,6 +88,13 @@
                 nameInputContainer.style.display = "block";
             }, 500);
         }
+    }
+
+    function goBack() {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = "torch.html";
+        }, 500);
     }
 
     // Handle "Continue" button click
