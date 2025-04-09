@@ -8,7 +8,7 @@
       }
     },
     "memory_flicker": {
-      "text": "Elliot tilts his head. 'That's strange... I don’t remember meeting you. But I feel like I should.' His fingers tap nervously on the desk. 'Do you remember my brother?'",
+      "text": "Elliot tilts his head. 'That’s strange... I don’t remember meeting you. But I feel like I should.' His fingers tap nervously on the desk. 'Do you remember my brother?'",
       "choices": {
         "Yes, I remember him.": "glitch_twin",
         "You never had a brother.": "elliot_denial"
@@ -59,27 +59,20 @@
     "truth_revealed": {
       "text": "A door creaks open behind Elliot. Inside, endless monitors show footage of him—alone. Talking to himself. Every conversation he remembers... is just him. But there’s another screen. A blurry figure, face censored, being dragged away. 'No... No, that’s not...' His voice breaks. The screen flickers. The experiment logs update. 'Subject Elliot—progressing as expected.'",
       "choices": {
-        "Step inside the room.": "final_reveal",
-        "Close the door.": "restart_loop"
+        "Step inside the room.": "cliffhanger",
+        "Close the door.": "cliffhanger"
       }
     },
     "distortion_warning": {
       "text": "The screen glitches. A distorted voice crackles: 'You were never supposed to remember.' The air vibrates with an unnatural hum. Elliot looks at you, terrified. 'It’s watching us.'",
       "choices": {
-        "Run.": "restart_loop",
-        "Face it.": "final_reveal"
+        "Run.": "cliffhanger",
+        "Face it.": "cliffhanger"
       }
     },
-    "final_reveal": {
-      "text": "The world fractures. Elliot’s reflection doesn’t match his movements. His twin brother smiles from the other side of the glass. 'It’s okay, Elliot. You were never meant to leave.' The screen flashes white. The session ends.",
+    "cliffhanger": {
+      "text": "The room collapses into static. Elliot’s voice echoes: 'It’s too late. They’re here.' The screen flashes white. Everything stops.",
       "choices": {}
-    },
-    "restart_loop": {
-      "text": "You blink. Elliot is sitting alone in an empty classroom. He looks up at you, confused. 'Do I... know you?'",
-      "choices": {
-        "Yes, we’ve met before.": "memory_flicker",
-        "No, but I want to know you.": "elliot_reacts"
-      }
     }
   }
 }
