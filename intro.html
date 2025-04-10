@@ -49,7 +49,7 @@
         <br>
         <div id="story-text"></div>
         <div id="name-input-container">
-            <button id="submit-name" class="choice-btn">Tell Me More</button>
+            <button id="submit-name" class="choice-btn">Follow the Whispers</button>
         </div>
     </div>
 
@@ -60,9 +60,9 @@
     const submitNameBtn = document.getElementById("submit-name");
 
     const introText = [
-        "Elliot is just a normal high school student.",
-        "Until one day, his twin brother vanishes...",
-        "And no one remembers him."
+        "Elliot was just a normal high school student.",
+        "Until the day his twin brother disappeared without a trace.",
+        "Now, strange whispers follow him wherever he goes...",
     ];
 
     // Function to navigate back to torch.html
@@ -91,13 +91,6 @@
         }
     }
 
-    function goBack() {
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-            window.location.href = "torch.html";
-        }, 500);
-    }
-
     // Handle "Continue" button click
     submitNameBtn.addEventListener("click", function () {
         // Add a fade-out animation before redirecting
@@ -113,6 +106,12 @@
     }, 1000);
 });
 
+function goBack() {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = "torch.html";
+        }, 500);
+    }
     </script>
 
 </body>

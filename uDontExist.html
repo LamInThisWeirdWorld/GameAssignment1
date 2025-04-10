@@ -1,5 +1,6 @@
 <html>
-<title>Gossips & Thoughts</title>
+<title>Rumors & Thoughts</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
     #background-heading {
             font-size: 4rem;
@@ -29,7 +30,9 @@
         }
         .hover-red:hover {
         color: red;
+        font-size: 1.5em;
         animation: glitch 1s infinite;
+        text-transform: uppercase;
     }
 
     /* Stop marquee movement on hover */
@@ -64,8 +67,7 @@
         transition: block 2s ease-in-out; /* Fade in effect */
     }
 </style>
-<!-- <link rel="icon" href="https://tse1.explicit.bing.net/th?id=OIP.WBNZ4DEUXwEmin-66Mvx-QHaFj&pid=Api"> -->
-<body style="background-image: url(moving-formation2.gif); background-color: rgb(255, 255, 255);">
+<body style="font-family: 'Special Elite', monospace; background-image: url(moving-formation2.gif); background-color: rgb(255, 255, 255);">
     <div id="overlay"></div> 
     <div class="content">
     <div align="center" style="position:relative; bottom:1px; color:#033">
@@ -604,26 +606,26 @@
 <br>
 <br>
 </div>
-<marquee scrollamount="30">
+<marquee class="hover-marquee" scrollamount="30">
             <font color="white">Leave me alone!</font>
 </marquee>
 <br>
 <br>
 <br>
-<marquee direction=right scrollamount="22">
+<marquee class="hover-marquee" direction=right scrollamount="22">
             <font color="white">Please help me find my brother</font>
 </marquee>
 <br>
 <br>
 <br>
 <br>
-<marquee direction=right scrollamount="15">
+<marquee class="hover-marquee" direction=right scrollamount="15">
     <font color="white">I won’t stop until I find him.</font>
 </marquee>
 <br>
 <br>
 <br>
-<marquee scrollamount="26">
+<marquee class="hover-marquee" scrollamount="26">
     <font color="white">I know you know something. Tell me what it is!</font>
 </marquee>
 <br>
@@ -631,10 +633,10 @@
 <br>
 <br>
 <br>
-<marquee id="hover-marquee" scrollamount="18">
+<marquee class="hover-marquee" scrollamount="18">
     <a href="errorPage.html" style="text-decoration: none;">
-        <font color="white" class="hover-red" style="font-size: 1.3em;">
-            I am sure my twin exists... but why can't I remember his name?
+        <font color="white" class="hover-red">
+            Why can’t I remember his name? Am I losing myself?
         </font>
     </a>
 </marquee>
@@ -642,19 +644,19 @@
 <br>
 <br>
 <br>
-<marquee scrollamount="22">
+<marquee class="hover-marquee" scrollamount="22">
             <font color="white">I know you all did this, didn't you?</font>
 </marquee>
 <br>
 <br>
 <br>
-<marquee scrollamount="19">
+<marquee class="hover-marquee" scrollamount="19">
     <font color="white">I can still hear his voice... or is it just in my head?</font>
 </marquee>
 <br>
 <br>
 <br>
-<marquee direction=right scrollamount="29">
+<marquee class="hover-marquee" direction=right scrollamount="29">
     <font color="white">I know you’re hiding something, aren’t you?</font>
 </marquee>
 <div class="content">
@@ -1251,14 +1253,14 @@ function handleButtonClick() {
         button.style.opacity = "1"; // Restore opacity
     }, 10000);
 }
-    // setInterval(function() {
-    //     var div = document.querySelector("#counter");
-    //     var count = div.textContent * 1 - 1;
-    //     div.textContent = count;
-    //     if (count <= 0) {
-    //         window.location.replace("errorPage.html");
-    //     }
-    // }, 1000);
+    setInterval(function() {
+        var div = document.querySelector("#counter");
+        var count = div.textContent * 1 - 1;
+        div.textContent = count;
+        if (count <= 0) {
+            window.location.replace("errorPage.html");
+        }
+    }, 1000);
 
     setTimeout(() => {
         const overlay = document.getElementById("overlay");
@@ -1273,14 +1275,18 @@ function handleButtonClick() {
         });
     }, 4500);
     // Pause marquee on hover
-    const marquee = document.getElementById("hover-marquee");
+    const marquees = document.querySelectorAll(".hover-marquee");
 
-    marquee.addEventListener("mouseover", function () {
-        marquee.stop(); // Stop the marquee
-    });
+    marquees.forEach((marquee) => {
+        // Stop the marquee when hovered
+        marquee.addEventListener("mouseover", function () {
+            marquee.stop(); // Stop the marquee
+        });
 
-    marquee.addEventListener("mouseout", function () {
-        marquee.start(); // Restart the marquee
+        // Restart the marquee when hover ends
+        marquee.addEventListener("mouseout", function () {
+            marquee.start(); // Restart the marquee
+        });
     });
 </script>
 </body>
