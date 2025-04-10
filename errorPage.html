@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glitch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -32,6 +33,40 @@
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
         }
 
+        #back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-family: 'Special Elite', monospace;
+        }
+
+        #skip-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-family: 'Special Elite', monospace;
+        }
+
+        #back-button:hover, #skip-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+
         /* Fullscreen animation for the final click */
         @keyframes fillScreen {
             0% {
@@ -58,7 +93,11 @@
 </head>
 <body>
     <div id="image-container"></div>
+    <!-- Back arrow button -->
+    <button id="back-button" onclick="goBack()">←</button>
 
+    <!-- Skip button -->
+    <button id="skip-button" onclick="skipToNextPage()">⏭</button>
     <script>
         let clickCount = 0; // Track the number of clicks
         const maxClicks = 10; // Maximum number of clicks before redirecting
@@ -100,6 +139,15 @@
                 }, 1000); // 1 second for the animation
             }
         });
+
+        // Skip button functionality
+        function skipToNextPage() {
+            window.location.href = 'next.html'; // Redirect to the next page
+        }
+
+        function goBack() {
+            window.location.href = "uDontExist.html";
+        }
     </script>
 </body>
 </html>

@@ -20,7 +20,19 @@
             transition: transform 0.3s ease;
         }
 
-        #back-button:hover {
+        #skip-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #back-button:hover, #skip-button:hover {
             color: red;
             transform: scale(1.2);
             box-shadow: none; /* Change color on hover */
@@ -41,6 +53,9 @@
     <!-- Back arrow button -->
     <button id="back-button" onclick="goBack()">←</button>
 
+    <!-- Skip button -->
+    <button id="skip-button" onclick="skipToEnd()">⏭</button>
+
     <div class="container">
         <br>
         <br>
@@ -48,71 +63,79 @@
         <br>
         <br>
         <div id="story-text"></div>
-        <div id="name-input-container">
+        <div id="name-input-container" style="display: none;">
             <button id="submit-name" class="choice-btn">Follow the Whispers</button>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    const storyText = document.getElementById("story-text");
-    const nameInputContainer = document.getElementById("name-input-container");
-    const submitNameBtn = document.getElementById("submit-name");
+            const storyText = document.getElementById("story-text");
+            const nameInputContainer = document.getElementById("name-input-container");
+            const submitNameBtn = document.getElementById("submit-name");
 
-    const introText = [
-        "Elliot was just a normal high school student.",
-        "Until the day his twin brother disappeared without a trace.",
-        "Now, strange whispers follow him wherever he goes...",
-    ];
+            const introText = [
+                "Elliot was just a normal high school student.",
+                "Until the day his twin brother disappeared without a trace.",
+                "Now, strange whispers follow him wherever he goes...",
+            ];
 
-    // Function to navigate back to torch.html
+            let index = 0;
+            let charIndex = 0;
+            let currentText = "";
+            let isSkipped = false; // Flag to track if Skip was clicked
 
-    let index = 0;
-    let charIndex = 0;
-    let currentText = "";
+            function typeText() {
+                if (isSkipped) return; // Stop typing if Skip was clicked
 
-    function typeText() {
-        if (index < introText.length) {
-            if (charIndex < introText[index].length) {
-                currentText += introText[index][charIndex];
-                storyText.innerHTML = currentText;
-                charIndex++;
-                setTimeout(typeText, 50);
-            } else {
-                index++;
-                charIndex = 0;
-                currentText += "<br><br>";
-                setTimeout(typeText, 500);
+                if (index < introText.length) {
+                    if (charIndex < introText[index].length) {
+                        currentText += introText[index][charIndex];
+                        storyText.innerHTML = currentText;
+                        charIndex++;
+                        setTimeout(typeText, 50);
+                    } else {
+                        index++;
+                        charIndex = 0;
+                        currentText += "<br><br>";
+                        setTimeout(typeText, 500);
+                    }
+                } else {
+                    setTimeout(() => {
+                        nameInputContainer.style.display = "block";
+                    }, 500);
+                }
             }
-        } else {
+
+            // Skip to the final state
+            window.skipToEnd = function () {
+                isSkipped = true; // Set the skip flag to true
+                currentText = introText.join("<br><br>"); // Combine all text
+                storyText.innerHTML = currentText; // Display all text immediately
+                nameInputContainer.style.display = "block"; // Show the "Follow the Whispers" button
+                document.getElementById("skip-button").style.display = "none";
+            };
+
+            // Handle "Continue" button click
+            submitNameBtn.addEventListener("click", function () {
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = "uDontExist.html";
+                }, 1000);
+            });
+
+            // Start typing effect
             setTimeout(() => {
-                nameInputContainer.style.display = "block";
+                typeText();
+            }, 1000);
+        });
+
+        function goBack() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = "torch.html";
             }, 500);
         }
-    }
-
-    // Handle "Continue" button click
-    submitNameBtn.addEventListener("click", function () {
-        // Add a fade-out animation before redirecting
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-            // Redirect to the next page after the animation
-            window.location.href = "uDontExist.html";
-        }, 1000); // Match the animation duration
-    });
-
-    setTimeout(() => {
-        typeText();
-    }, 1000);
-});
-
-function goBack() {
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-            window.location.href = "torch.html";
-        }, 500);
-    }
     </script>
-
 </body>
 </html>

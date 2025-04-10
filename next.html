@@ -34,10 +34,22 @@
             transition: transform 0.3s ease;
         }
 
-        #back-button:hover {
+        #back-button:hover, #skip-button:hover {
             color: red;
             transform: scale(1.2);
             box-shadow: none; /* Change color on hover */
+        }
+
+        #skip-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         body {
@@ -51,7 +63,12 @@
     </style>
 </head>
 <body>
+    <!-- Back arrow button -->
     <button id="back-button" onclick="goBack()">←</button>
+
+    <!-- Skip button -->
+    <button id="skip-button" onclick="skipToEnd()">⏭</button>
+
     <div class="container">
         <br>
         <br>
@@ -77,8 +94,12 @@
             const buttonsContainer = document.getElementById("buttons-container");
             const glitchText = document.getElementById("glitch-text");
 
+            let isSkipped = false; // Flag to track if Skip was clicked
+
             // Typewriter effect for vertical notation
             function typeWriterNotation(text, callback) {
+                if (isSkipped) return callback(); // Skip directly to the callback if Skip is clicked
+
                 let i = 0;
                 notation.style.display = "block";
                 function type() {
@@ -100,6 +121,8 @@
 
             // Typewriter effect for choice text
             function typeWriterChoiceText(text, callback) {
+                if (isSkipped) return callback(); // Skip directly to the callback if Skip is clicked
+
                 let i = 0;
                 choicesContainer.style.display = "block";
                 choiceText.style.display = "block";
@@ -184,6 +207,18 @@
                 return glitchChars[Math.floor(Math.random() * glitchChars.length)];
             }
 
+            // Skip to the final state
+            window.skipToEnd = function () {
+                isSkipped = true; // Set the skip flag to true
+
+                // Immediately display the choices
+                notation.style.display = "none"; // Hide the notation
+                choicesContainer.style.display = "block";
+                choiceText.style.display = "block";
+                choiceText.innerHTML = "Something about this feels... off.";
+                buttonsContainer.style.display = "block"; // Show the buttons
+                document.getElementById("skip-button").style.display = "none";
+            };
         });
 
         // Function to navigate back to torch.html
@@ -194,6 +229,5 @@
             }, 500);
         }
     </script>
-
 </body>
 </html>

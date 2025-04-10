@@ -35,6 +35,25 @@
         text-transform: uppercase;
     }
 
+    #skip-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        #skip-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+
     /* Stop marquee movement on hover */
     #hover-marquee:hover {
         animation-play-state: paused; /* Pause animation */
@@ -1194,8 +1213,26 @@
 <br>
 <br>
 </div>
+<button id="skip-button" onclick="skipToEnd()">⏭</button>
 <audio src="8bit.mp3" autoplay loop></audio>
 <script>
+    const contents = document.querySelectorAll(".content");
+    // Skip to the final state
+    window.skipToEnd = function () {
+        isSkipped = true; // Set the skip flag to true
+
+        // Immediately hide the overlay
+        overlay.style.opacity = "0";
+        overlay.style.display = "none";
+
+        // Immediately show all content
+        contents.forEach((content) => {
+            content.style.display = "block";
+        });
+
+        document.getElementById("skip-button").style.display = "none"; // Hide the skip button
+    };
+
     function myFunction() {
   var NAME = document.getElementById("NAME").value.trim(); // Trim whitespace
   var text;
@@ -1269,7 +1306,7 @@ function handleButtonClick() {
     }, 5000);
 
     setTimeout(() => {
-        const contents = document.querySelectorAll(".content"); // Select all elements with the class "content"
+         // Select all elements with the class "content"
         contents.forEach((content) => {
             content.style.display = "block";
         });
