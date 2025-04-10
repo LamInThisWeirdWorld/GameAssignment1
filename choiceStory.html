@@ -4,16 +4,217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Story</title>
-    <script defer src="choice_story_script.js"></script>
+    <!-- <link rel="stylesheet" href="styles1.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
+    <script defer src="choiceStoryScript.js"></script>
+    <script src="responsivenessHandler.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        #story { margin-bottom: 20px; font-size: 1.2em; }
-        #choices button { margin: 5px; padding: 10px; cursor: pointer; display: block; width: 200px; margin-left: auto; margin-right: auto; }
+        body { 
+            font-family: 'Special Elite', monospace; 
+            margin: 0; 
+            padding: 0;
+            background: url(static-tv-head.gif);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            text-align: center;
+            color: white;
+        }
+        #back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-family: 'Special Elite', monospace;
+        }
+        #skip-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+        #back-button:hover, #skip-button:hover {
+            color: red;
+            transform: scale(1.2);
+            box-shadow: none; /* Change color on hover */
+        }
+        #content {
+            position: relative; /* Ensure content is above the overlay */
+            z-index: 2;
+        }
+        #choices {
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center buttons horizontally */
+            gap: 20px; /* Add space between buttons */
+            margin-bottom: 20px; /* Add spacing above the buttons */
+        }
+        .choice-btn {
+            /* border: 2px solid white; */
+            color: white;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border-radius: 10px; /* Rounded corners */
+            font-family: 'Special Elite', monospace;
+            width: 30%;
+            display: block;
+            padding: 15px; /* Larger padding for better appearance */
+            background-color: #444; /* Slightly lighter gray */
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .choice-btn:hover {
+            background-color: #666; /* Lighter gray on hover */
+            color: black;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        #conversation {
+            position: fixed; /* Keep it within the content flow */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
+            text-align: center;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for separation */
+        }
+        #story {
+            font-size: 1.3em;
+            margin: 0;
+            padding: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+            color: white;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out forwards;
+            line-height: 1.8;
+        }
+        #name {
+        font-size: 3rem; /* Adjust size as needed */
+        font-family: 'Special Elite', monospace; /* Match the theme */
+        text-align: center;
+        padding-top: 2%;
+        animation: flicker 10s alternate infinite, floating 3s ease-in-out infinite; /* Add flickering animation */
+    }
+
+    @keyframes flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            opacity: 1; /* Fully visible */
+            color: black; /* Normal color */
+        }
+        20%, 24%, 55% {
+            opacity: 0.5; /* Slightly dimmed */
+            color: red;
+        }
+        22%, 26% {
+            opacity: 0; /* Invisible */
+            color:red;
+        }
+    }
+    @keyframes floating {
+        0% {
+            transform: translateY(0); /* Start at the original position */
+        }
+        50% {
+            transform: translateY(10px); /* Move up slightly */
+        }
+        100% {
+            transform: translateY(0); /* Return to the original position */
+        }
+    }
     </style>
 </head>
 <body>
-    <h1>Interactive Story</h1>
+    <button id="skip-button" onclick="skipStory()">⏭</button>
+    <button id="back-button" onclick="goBack()">←</button>
+    <h1 id="name" style="color: black; padding-top: 2%;">Elliot</h1>
+    <div id="conversation">
     <p id="story">Loading story...</p>
     <div id="choices"></div>
+    </div>
+<script>
+    fetch('choiceQuestions.json')
+    .then(response => response.json())
+    .then(data => {
+        let currentStep = 'start';
+        const storyElement = document.getElementById('story');
+        const choicesElement = document.getElementById('choices');
+        const skipButton = document.getElementById('skip-button');
+        let isTyping = false; // Flag to track if the typewriter effect is running
+        let typewriterTimeout; // Store the timeout ID for clearing later
+
+        function displayStep(step) {
+            const node = data.questions[step];
+            const text = node.text; // Get the text for the current step
+            storyElement.textContent = ''; // Clear the story element
+            choicesElement.innerHTML = ''; // Clear the choices
+            skipButton.style.display = 'block'; // Show the skip button
+            isTyping = true; // Set the typing flag to true
+
+            // Typewriter effect
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    storyElement.textContent += text.charAt(i); // Add one character at a time
+                    i++;
+                    typewriterTimeout = setTimeout(typeWriter, 50); // Adjust typing speed here (50ms per character)
+                } else {
+                    // Once the text is fully displayed, show the choices
+                    isTyping = false; // Typing is complete
+                    skipButton.style.display = 'none'; // Hide the skip button
+                    Object.keys(node.choices).forEach(choice => {
+                        const button = document.createElement('button');
+                        button.className = 'choice-btn';
+                        button.textContent = choice;
+                        button.onclick = () => displayStep(node.choices[choice]);
+                        choicesElement.appendChild(button);
+                    });
+                }
+            }
+
+            typeWriter(); // Start the typewriter effect
+        }
+
+        // Skip function to immediately display the full text
+        window.skipStory = function () {
+            if (isTyping) {
+                clearTimeout(typewriterTimeout); // Stop the typewriter effect
+                storyElement.textContent = data.questions[currentStep].text; // Display the full text
+                isTyping = false; // Typing is complete
+                skipButton.style.display = 'none'; // Hide the skip button
+
+                // Show the choices immediately
+                const node = data.questions[currentStep];
+                Object.keys(node.choices).forEach(choice => {
+                    const button = document.createElement('button');
+                    button.className = 'choice-btn';
+                    button.textContent = choice;
+                    currentStep = node.choices[choice]; // Update current step
+                    button.onclick = () => displayStep(node.choices[choice]);
+                    choicesElement.appendChild(button);
+                });
+            }
+        };
+
+        displayStep(currentStep);
+    })
+    .catch(error => console.error("Error loading story:", error));
+
+  function goBack() {
+    window.location.href = "next.html";
+}
+    </script>
 </body>
 </html>

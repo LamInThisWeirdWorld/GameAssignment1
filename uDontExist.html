@@ -50,7 +50,19 @@
             transition: transform 0.3s ease;
         }
 
-        #skip-button:hover {
+        #back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #back-button:hover, #skip-button:hover {
             color: red;
             transform: scale(1.2);
             box-shadow: none; /* Change color on hover */
@@ -1216,6 +1228,8 @@
 <br>
 <br>
 </div>
+<!-- Back arrow button -->
+<button id="back-button" style="font-family: 'Special Elite', monospace;" onclick="goBack()">←</button>
 <button id="skip-button" onclick="skipToEnd()">⏭</button>
 <audio src="8bit.mp3" autoplay loop></audio>
 <script>
@@ -1329,6 +1343,10 @@ function handleButtonClick() {
             marquee.start(); // Restart the marquee
         });
     });
+    // Function to navigate back to torch.html
+    function goBack() {
+                window.location.href = "intro.html";
+        }
 </script>
 </body>
 </html>
