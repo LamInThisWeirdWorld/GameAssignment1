@@ -40,21 +40,7 @@ input, button {
     font-family: 'Special Elite', monospace;
 }
 
-button {
-    background-color: #333; /* Dark gray background */
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); 
-}
-
-button:hover {
-    background: white;
-    color: black;
-    transform: scale(1.1); /* Slightly enlarge on hover */
-    box-shadow: 0 6px 8px rgba(255, 255, 255, 0.2); /* Glow effect */
-}
-
 .choice-btn {
-    display: none;
     display: block;
     width: 100%;
     margin-top: 10px;
