@@ -10,7 +10,6 @@
         body {
             margin: 0;
             padding: 50px;
-            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -20,8 +19,103 @@
             overflow: hidden;
             position: relative;
             opacity: 1;
+            overflow-y: auto;
+            color: white;
             transition: opacity 0.5s ease-in-out;
         }
+
+        
+        #ending-table {
+            position: relative; /* Ensure the table is positioned relative to the document */
+            z-index: 5; /* Higher than the body::before overlay */
+            width: 90%;
+            border-collapse: collapse; /* Ensure borders don't double up */
+            margin: 20px auto; /* Center the table horizontally */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            color: white;
+            font-size: 1rem;
+            text-align: left;
+            border: 2px solid white; /* Add a border around the entire table */
+        }
+
+        #how-to-play, #controls, #characters {
+            position: relative; /* Ensure the table is positioned relative to the document */
+            z-index: 5; /* Higher than the body::before overlay */
+            width: 85%;
+            padding: 20px;
+            border-collapse: collapse; /* Ensure borders don't double up */
+            margin: 20px auto; /* Center the table horizontally */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            border: 2px solid white; /* Add a border around the entire table */
+        }
+
+#ending-table th, #ending-table td {
+    border: 1px solid white; /* Add borders to table cells */
+    padding: 10px; /* Add padding inside cells */
+}
+
+#ending-table th {
+    color: white; /* White text for headers */
+    text-align: center;
+}
+
+#ending-table td {
+    vertical-align: top; /* Align text to the top of the cell */
+    padding: 10px; /* Add padding inside cells */
+}
+
+/* Add specific colors for each row */
+#ending-table tr:nth-child(1) td {
+    color: lightgreen; /* Light green for "The Truth Revealed" */
+}
+
+#ending-table tr:nth-child(2) td {
+    color: orange; /* Orange for "The Descent into Chaos" */
+}
+
+#ending-table tr:nth-child(3) td {
+    color: yellow; /* Yellow for "The False Assumption" */
+}
+
+#ending-table tr:nth-child(4) td {
+    color: lightblue; /* Light blue for "The Redemption" */
+}
+
+#ending-table tr:nth-child(5) td {
+    color: blanchedalmond; /* Gray for "The Endless Loop" */
+}
+
+#ending-table tr:nth-child(6) td {
+    color: pink; /* Pink for "The Reconciliation" */
+}
+
+#ending-table tr:nth-child(7) td {
+    color: cyan; /* Cyan for "The Self-Discovery" */
+}
+
+#ending-table tr:nth-child(8) td {
+    color: violet; /* Violet for "The Fragmented Reality" */
+}
+
+#ending-table tr:nth-child(9) td {
+    color: red; /* Red for "The Brother Never Existed" */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+    z-index: 1; /* Ensure the overlay is below the table */
+    pointer-events: none; /* Allow interaction with content below */
+
+}
 
         body.fade-out {
             opacity: 0;
@@ -29,8 +123,8 @@
 
         #back-button {
             position: fixed;
-            top: 30px;
-            left: 0px;
+            top: 10px;
+            left: 10px;
             background-color: transparent;
             border: none;
             font-size: 3rem;
@@ -47,34 +141,315 @@
             box-shadow: none; /* Change color on hover */
         }
 
-        /* Sheer black overlay for readability */
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 1); /* Start with full black opacity */
-            z-index: 1;
-            transition: background-color 2s ease-in-out;
-        }
-
         #message {
-            position: relative;
-            z-index: 2; /* Ensure the text is above the overlay */
-            color: red;
-            font-size: 2rem;
-            text-align: center;
-            opacity: 1; /* Start visible for typewriter effect */
-            white-space: pre-wrap; /* Preserve line breaks */
-        }
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack lines vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh;
+    z-index: 2; /* Ensure the text is above the overlay */
+    color: red;
+    font-size: 4rem;
+    text-align: center;
+    opacity: 1; /* Start visible for the stamping effect */
+    white-space: pre-wrap; /* Preserve line breaks */
+}
+        @keyframes stamp {
+    0% {
+        transform: scale(3); /* Start very large */
+        opacity: 0; /* Start invisible */
+    }
+    50% {
+        transform: scale(1.5); /* Shrink halfway */
+        opacity: 1; /* Become visible */
+    }
+    100% {
+        transform: scale(1); /* Settle at normal size */
+    }
+}
+
+.stamped {
+    display: inline-block; /* Treat each character or word as a block for animation */
+    animation: stamp 0.5s ease-out; /* Apply the zoom-out animation */
+}
+
+section {
+    width: 80%; /* Limit the width of sections */
+    margin-bottom: 30px; /* Add spacing between sections */
+    text-align: center; /* Center-align text */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px; /* Add space between cards */
+    margin-top: 20px; /* Add spacing above the cards */
+}
+
+.card:nth-child(1) {
+    color: rgba(255, 99, 71, 0.8); /* Tomato */
+}
+
+.card:nth-child(2) {
+    color: rgba(60, 179, 113, 0.8); /* Medium Sea Green */
+}
+
+.card:nth-child(3) {
+    color: rgba(70, 130, 180, 0.8); /* Steel Blue */
+}
+
+.card:nth-child(4) {
+    color: rgba(238, 130, 238, 0.8); /* Violet */
+}
+
+.card:nth-child(5) {
+    color: rgba(255, 215, 0, 0.8); /* Gold */
+}
+
+.card:nth-child(6) {
+    color: rgba(255, 105, 180, 0.8); /* Hot Pink */
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px; /* Rounded corners */
+    width: 250px; /* Fixed width for cards */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    animation: glitch 725ms infinite;
+}
+#ending-table tr:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    animation: glitch 725ms infinite;
+}
+body h2, #ending-table th {
+    animation: glitch 725ms infinite;
+}
+.card img {
+    width: 100%; /* Make the image fit the card width */
+    height: 150px; /* Fixed height for images */
+    object-fit: cover; /* Ensure the image covers the space */
+    border-radius: 5px; /* Rounded corners for the image */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.glitch {
+            text-transform: uppercase;
+    /* position: relative; */
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00;
+    animation: glitch 725ms infinite;
+  }
+        @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,0.025em 0.04em 0 #fffc00;
+    }
+    15% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+        0.025em 0.04em 0 #fffc00;
+    }
+    16% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    50% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    99% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    100% {
+      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+        -0.04em -0.025em 0 #fffc00;
+    }
+  }
     </style>
 </head>
 <body>
     <button id="back-button" onclick="goBack()">←</button>
-    <div id="overlay"></div> <!-- Sheer black overlay -->
-    <div id="message"></div> <!-- Empty message container for typewriter effect -->
-
+    <div id="message" class="stamped"></div> <!-- Empty message container for typewriter effect -->
+    <!-- How to Play the Game Section -->
+    <section id="how-to-play" style="color: tomato">
+        <h2>HOW TO PLAY THE GAME</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="placeholder1.jpg" alt="Explore Image">
+                <h3>Explore the World</h3>
+                <p>Play as Elliot and explore his school and student accommodation. The game takes place over a single day, starting at midnight and ending the following midnight.</p>
+            </div>
+            <div class="card">
+                <img src="placeholder2.jpg" alt="Memory Image">
+                <h3>Recollect Memories</h3>
+                <p>Search for cryptic messages and clues to uncover fragmented memory pieces. Be cautious—discarded memory pieces will be permanently lost for the current game run.</p>
+            </div>
+            <div class="card">
+                <img src="placeholder3.jpg" alt="Reorder Image">
+                <h3>Reorder Memories</h3>
+                <p>Organize collected memory fragments stored in your inventory to form different assumptions about what truly happened.</p>
+            </div>
+            <div class="card">
+                <img src="placeholder4.jpg" alt="Anxiety Image">
+                <h3>Manage Anxiety</h3>
+                <p>Prolonged reordering memories can trigger Elliot's anxiety attacks. Calm him successfully to prevent losing already collected memory fragments.</p>
+            </div>
+            <div class="card">
+                <img src="placeholder5.jpg" alt="Fragments Image">
+                <h3>Find Lost Fragments</h3>
+                <p>Memory fragments lost due to failed anxiety management will reappear in random locations, giving you another chance to recover them.</p>
+            </div>
+            <div class="card">
+                <img src="placeholder6.jpg" alt="Ending Image">
+                <h3>Discover the Ending</h3>
+                <p>Determine Elliot's ending by drawing conclusions from the 10 collected memory fragments based on how you organize them.</p>
+            </div>
+        </div>
+    </section>
+<br>
+<!-- Controls Section -->
+<section id="controls" style="color: yellowgreen">
+    <h2>CONTROLS</h2>
+    <div class="card-container">
+        <div class="card">
+            <img src="placeholder7.jpg" alt="Movement Image">
+            <h3>Movement</h3>
+            <p>Use the keyboard keys (A, D, W, S) or a controller to navigate through the game world.</p>
+        </div>
+        <div class="card">
+            <img src="placeholder8.jpg" alt="Calm Image">
+            <h3>Calm Elliot</h3>
+            <p>Hit Enter/Return to calm Elliot during anxiety triggers.</p>
+        </div>
+        <div class="card">
+            <img src="placeholder9.jpg" alt="Collect Image">
+            <h3>Collect Items</h3>
+            <p>Left-click to collect items, zoom into inspectable areas, or access your inventory.</p>
+        </div>
+        <div class="card">
+            <img src="placeholder10.jpg" alt="Pause Image">
+            <h3>Pause the Game</h3>
+            <p>Press the Escape Key (Esc) to pause the game or return to the main menu.</p>
+        </div>
+    </div>
+</section>
+<br>
+<!-- Characters in the Story Section -->
+<section id="characters" style="color: lightseagreen;">
+    <h2>CHARACTERS IN THE STORY</h2>
+    <div class="card-container">
+        <div class="card">
+            <img src="placeholder11.jpg" alt="Elliot Image">
+            <h3>Elliot</h3>
+            <p>The protagonist who struggles with guilt, loss, and fragmented memories. His thoughts and memories are represented as cryptic messages and whispers.</p>
+        </div>
+        <div class="card">
+            <img src="placeholder12.jpg" alt="Brother Image">
+            <h3>The Brother</h3>
+            <p>A mysterious figure central to Elliot's guilt and memories. His disappearance or death is a key part of the story.</p>
+        </div>
+        <div class="card">
+            <img src="placeholder13.jpg" alt="Voices Image">
+            <h3>The Whispering Voices</h3>
+            <p>These voices represent Elliot's inner turmoil and self-doubt. They guide, mislead, or taunt the player throughout the game.</p>
+        </div>
+    </div>
+</section>
+<br>
+    <!-- Endings Table -->
+    <h2 style="text-align: center; color: lightcyan; text-shadow: 0 0 5px black;">A FEW POSSIBLE ENDINGS</h2>
+    <p style="color: lightcyan; text-shadow: 0 0 5px black; font-size: 1rem; margin: 10px auto; width: 50%;">
+        The ending of the game is determined by the following two factors:
+    </p>
+    <ol style="color: olivedrab; text-shadow: 0 0 5px black; font-size: 1rem; margin: 10px auto; width: 50%; list-style-type: disc; padding-left: 20px;">
+            <span style="color: rgb(173, 210, 99);"><strong>1)</strong> The 10 memory fragments collected during the game.</span><br>
+        <span style="color: red;"><strong>2)</strong> How the player reorders those fragments to form their assumptions.</span>
+    </ol>
+            <p style="color: pink; text-shadow: 0 0 5px black; font-size: 1rem; margin: 10px auto; width: 60%;"><span style="color: rgb(173, 210, 99);">The table below lists possible endings based on the first factor (the memory fragments collected).</span><br>
+            <span style="color: red;">The reordering of fragments introduces additional layers of complexity and nuance to the story.</span>
+            </p>
+        
+    
+    <table id="ending-table">
+        <thead>
+            <tr>
+                <th>ENDING NAME</th>
+                <th>CONDITION</th>
+                <th>OUTCOME</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>The Truth Revealed</td>
+                <td>Player collects 10 accurate memory fragments that reconstruct the true events.</td>
+                <td>Elliot discovers the truth: his brother's disappearance was an accident, and he was not at fault. He finds closure and heals.</td>
+            </tr>
+            <tr>
+                <td>The Descent into Chaos</td>
+                <td>Player fails to calm Elliot during panic attacks, leading to the loss of critical memory pieces.</td>
+                <td>Elliot's fragmented memories lead him to believe he caused his brother's disappearance. Overwhelmed by guilt, he succumbs to his inner turmoil.</td>
+            </tr>
+            <tr>
+                <td>The False Assumption</td>
+                <td>Player collects a mix of accurate and misleading memory fragments.</td>
+                <td>Elliot reconstructs a partially true version of events but leaves key questions unanswered. He walks into a foggy, ambiguous future.</td>
+            </tr>
+            <tr>
+                <td>The Redemption</td>
+                <td>Player collects fragments revealing Elliot's role in his brother's disappearance and forgiveness.</td>
+                <td>Elliot realizes his mistake but also finds evidence of his brother's love and forgiveness. He forgives himself and moves forward.</td>
+            </tr>
+            <tr>
+                <td>The Endless Loop</td>
+                <td>Player fails to collect 10 memory fragments or repeatedly loses fragments.</td>
+                <td>Elliot is unable to reconstruct his memories and remains trapped in a cycle of anxiety and self-doubt.</td>
+            </tr>
+            <tr>
+                <td>The Reconciliation</td>
+                <td>Player collects fragments revealing the brother is alive.</td>
+                <td>Elliot discovers his brother is still alive and finds hope for a reunion.</td>
+            </tr>
+            <tr>
+                <td>The Self-Discovery</td>
+                <td>Player collects fragments focusing on Elliot's personal growth rather than his brother.</td>
+                <td>Elliot realizes he is not defined by his brother's disappearance and finds strength in his journey.</td>
+            </tr>
+            <tr>
+                <td>The Fragmented Reality</td>
+                <td>Player collects surreal or cryptic memory fragments.</td>
+                <td>Elliot reconstructs a distorted version of events, blurring the line between reality and imagination.</td>
+            </tr>
+            <tr>
+                <td>The Brother Never Existed</td>
+                <td>Player collects surreal or contradictory fragments, failing to prove the brother's existence.</td>
+                <td>Elliot realizes his brother was a figment of his imagination, created to cope with loneliness or trauma.</td>
+            </tr>
+        </tbody>
+    </table>
+<br><br><br>
     <script>
         // Gradually reduce the overlay opacity from 1 to 0.6
         setTimeout(() => {
@@ -82,29 +457,38 @@
             overlay.style.backgroundColor = "rgba(0, 0, 0, 0.6)"; // Transition to 60% opacity
         }, 3000); // Start the transition immediately
 
-        // Typewriter effect for the message
-        const messageText = "Step into Elliot’s mind.\n\nPlay the game.\n\nUnravel the truth… if you dare.";
-        const messageElement = document.getElementById("message");
-        let index = 0;
+        // Stamping effect for the message
+        const messageText = [
+    "STEP INTO ELLIOT'S MIND", "&",
+    "UNRAVEL THE TRUTH, IF YOU DARE"
+    
+]; 
+const messageElement = document.getElementById("message");
+let lineIndex = 0;
 
-        function typeWriter() {
-            if (index < messageText.length) {
-                messageElement.innerHTML += messageText.charAt(index);
-                index++;
-                setTimeout(typeWriter, 50); // Adjust typing speed here
-            } else {
-                // Fade out the message after 5 seconds
-                setTimeout(() => {
-                    messageElement.style.opacity = "0"; // Fade out the message
-                    setTimeout(() => {
-                        messageElement.style.display = "none"; // Remove the message from the screen
-                    }, 1000); // Wait for the fade-out transition to complete
-                }, 3000); // Display the message for 5 seconds after typing completes
-            }
-        }
+function stampEffect() {
+    if (lineIndex < messageText.length) {
+        const line = messageText[lineIndex]; // Get the current line
+        const lineContainer = document.createElement("div"); // Create a container for the line
+        lineContainer.textContent = line; // Set the line as the container's content
+        lineContainer.classList.add("stamped"); // Add the stamped class for animation
+        messageElement.appendChild(lineContainer); // Append the line container to the message element
 
-        // Start the typewriter effect after the overlay transition
-        setTimeout(typeWriter, 500); // Delay to sync with overlay transition
+        // Add a break line after each line
+        const breakLine = document.createElement("br");
+        messageElement.appendChild(breakLine);
+        // messageElement.appendChild(document.createElement("br"));
+        setTimeout(() => {
+            lineContainer.classList.remove("stamped");
+            lineContainer.classList.add("glitch");
+        }, 500); 
+        lineIndex++;
+        setTimeout(stampEffect, 1000); // Adjust the delay between lines here
+    }
+}
+
+// Start the stamping effect after the overlay transition
+setTimeout(stampEffect, 500);
 
         // Function to navigate back to next.html
         function goBack() {
