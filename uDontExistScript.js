@@ -119,6 +119,6 @@ function goNext3() {
   window.location.href = "uDontExist4.html";
 }
 function goNext4() {
-  window.location.href = "errorPage.html";
+  window.location.href = "next.html";
 }
 
