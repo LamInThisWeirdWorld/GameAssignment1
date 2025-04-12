@@ -85,22 +85,18 @@
 }
 
 #ending-table tr:nth-child(5) td {
-    color: blanchedalmond; /* Gray for "The Endless Loop" */
-}
-
-#ending-table tr:nth-child(6) td {
     color: pink; /* Pink for "The Reconciliation" */
 }
 
-#ending-table tr:nth-child(7) td {
+#ending-table tr:nth-child(6) td {
     color: cyan; /* Cyan for "The Self-Discovery" */
 }
 
-#ending-table tr:nth-child(8) td {
+#ending-table tr:nth-child(7) td {
     color: violet; /* Violet for "The Fragmented Reality" */
 }
 
-#ending-table tr:nth-child(9) td {
+#ending-table tr:nth-child(8) td {
     color: red; /* Red for "The Brother Never Existed" */
 }
 
@@ -405,8 +401,8 @@ body h2, #ending-table th {
         </thead>
         <tbody>
             <tr>
-                <td>The Truth Revealed</td>
-                <td>Player collects 10 accurate memory fragments that reconstruct the true events.</td>
+                <td>The Free From Guilt</td>
+                <td>Player collects 10 positive memory fragments that prove his innocence.</td>
                 <td>Elliot discovers the truth: his brother's disappearance was an accident, and he was not at fault. He finds closure and heals.</td>
             </tr>
             <tr>
@@ -416,7 +412,7 @@ body h2, #ending-table th {
             </tr>
             <tr>
                 <td>The False Assumption</td>
-                <td>Player collects a mix of accurate and misleading memory fragments.</td>
+                <td>Player collects a mix of virtue and regretful memory fragments.</td>
                 <td>Elliot reconstructs a partially true version of events but leaves key questions unanswered. He walks into a foggy, ambiguous future.</td>
             </tr>
             <tr>
@@ -435,19 +431,14 @@ body h2, #ending-table th {
                 <td>Elliot discovers his brother is still alive and finds hope for a reunion.</td>
             </tr>
             <tr>
-                <td>The Self-Discovery</td>
-                <td>Player collects fragments focusing on Elliot's personal growth rather than his brother.</td>
-                <td>Elliot realizes he is not defined by his brother's disappearance and finds strength in his journey.</td>
-            </tr>
-            <tr>
                 <td>The Fragmented Reality</td>
                 <td>Player collects surreal or cryptic memory fragments.</td>
                 <td>Elliot reconstructs a distorted version of events, blurring the line between reality and imagination.</td>
             </tr>
             <tr>
                 <td>The Brother Never Existed</td>
-                <td>Player collects surreal or contradictory fragments, failing to prove the brother's existence.</td>
-                <td>Elliot realizes his brother was a figment of his imagination, created to cope with loneliness or trauma.</td>
+                <td>Player collects only surreal or contradictory fragments, failing to prove the brother's existence.</td>
+                <td>Elliot realizes his brother was a figment of his imagination, created to cope with loneliness or trauma from being a test subjest of a lab.</td>
             </tr>
         </tbody>
     </table>
@@ -496,7 +487,7 @@ setTimeout(stampEffect, 500);
         function goBack() {
             document.body.classList.add('fade-out');
             setTimeout(() => {
-                window.location.href = "choiceStory.html"; // Ensure next.html exists in the same directory
+                window.location.href = "finalScreen.html"; // Ensure next.html exists in the same directory
             }, 500);
         }
     </script>
