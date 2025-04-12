@@ -50,7 +50,8 @@
     </style>
 </head>
 <body>
-
+    <audio id="typing-sound" src="sounds/Retro_Multiple_v5_wav.wav" preload="auto" loop></audio>
+    <audio id="soundtrack" src="sounds/11. Hide 'n' Seek.wav" preload="auto" loop></audio>
     <!-- Back arrow button -->
     <button id="back-button" onclick="goBack()">←</button>
 
@@ -70,6 +71,19 @@
     </div>
 
     <script>
+        const typingSound = document.getElementById('typing-sound');
+        const soundTrack = document.getElementById('soundtrack');
+        function stopSound(sound) {
+                sound.pause();
+                sound.currentTime = 0;
+        }
+        function playSound(sound) {
+            if (sound.paused) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log("Sound play error:", e));
+            }
+        }
+        playSound(soundTrack);
         document.addEventListener("DOMContentLoaded", function () {
             const storyText = document.getElementById("story-text");
             const nameInputContainer = document.getElementById("name-input-container");
@@ -81,13 +95,18 @@
                 "Now, strange whispers follow him wherever he goes...",
             ];
 
+            
+
             let index = 0;
             let charIndex = 0;
             let currentText = "";
             let isSkipped = false; // Flag to track if Skip was clicked
 
             function typeText() {
-                if (isSkipped) return; // Stop typing if Skip was clicked
+                if (isSkipped) {
+                    return; // Stop typing if Skip was clicked
+                    stopSound(typingSound);
+                }
 
                 if (index < introText.length) {
                     if (charIndex < introText[index].length) {
@@ -95,7 +114,9 @@
                         storyText.innerHTML = currentText;
                         charIndex++;
                         setTimeout(typeText, 50);
+                        playSound(typingSound);
                     } else {
+                        stopSound(typingSound);
                         index++;
                         charIndex = 0;
                         currentText += "<br><br>";
@@ -115,6 +136,7 @@
                 storyText.innerHTML = currentText; // Display all text immediately
                 nameInputContainer.style.display = "block"; // Show the "Follow the Whispers" button
                 document.getElementById("skip-button").style.display = "none";
+                stopSound(typingSound);
             };
 
             // Handle "Continue" button click
