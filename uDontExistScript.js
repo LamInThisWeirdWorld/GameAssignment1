@@ -95,7 +95,6 @@ setTimeout(() => {
     });
 }, 4500);
 
-// Function to navigate back to torch.html
 function goBack() {
             window.location.href = "intro.html";
     }
