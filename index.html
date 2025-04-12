@@ -264,10 +264,12 @@
     update({clientX: -10, clientY: -400});
 
 function startGame() {
+    stopSound(glitch1);
     document.body.classList.add('fade-out');
             setTimeout(() => {
             window.location.href = "intro.html";
         }, 1500);
+    
 }
 
 document.addEventListener('mousemove',update);
