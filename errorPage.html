@@ -93,6 +93,7 @@
     </style>
 </head>
 <body>
+    <audio id="glitch2" src="sounds/horror_01_drone_glitch_45.wav" preload="auto" loop></audio>
     <div id="image-container"></div>
     <!-- Back arrow button -->
     <button id="back-button" onclick="goBack()">←</button>
@@ -100,6 +101,18 @@
     <!-- Skip button -->
     <button id="skip-button" onclick="skipToNextPage()">⏭</button>
     <script>
+        const glitch2 = document.getElementById('glitch2');
+        function stopSound(sound) {
+                sound.pause();
+                sound.currentTime = 0;
+        }
+        function playSound(sound) {
+            if (sound.paused) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+        }
+        playSound(glitch2);
         let clickCount = 0; // Track the number of clicks
         const maxClicks = 10; // Maximum number of clicks before redirecting
 

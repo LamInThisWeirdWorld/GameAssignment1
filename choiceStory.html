@@ -164,8 +164,9 @@
         <div id="choices"></div>
     </div>
     <audio id="typing-sound" src="sounds/Retro_Multiple_v5_wav.wav" preload="auto" loop></audio>
-
+    <audio id="soundtrack" src="sounds/11. Hide 'n' Seek.wav" preload="auto" loop></audio>
     <script>
+        const soundTrack = document.getElementById('soundtrack');
         const typingSound = document.getElementById('typing-sound');
         function goBack() {
             window.location.href = 'next.html';
@@ -175,6 +176,15 @@
             sound.pause();
             sound.currentTime = 0;
         }
+
+        function playSound(sound) {
+            if (sound.paused) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log("Sound play error:", e));
+            }
+        }
+
+        playSound(soundTrack);
 
         fetch('choiceQuestions2.json')
         .then(response => response.json())

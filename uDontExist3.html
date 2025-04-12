@@ -22,7 +22,9 @@
 }
 </style>
 </head>
+
 <body style="font-family: 'Special Elite', monospace; background-image: url(moving-formation2.gif); background-color: rgb(255, 255, 255);">
+    <audio id="soundtrack2" src="sounds/5. The Amicable Apparition.wav" preload="auto" loop></audio>
     <div id="overlay" style="background: none; background-color: black; transition: opacity 1s ease-in-out;">
         <div id="depress" style="width: 100vw">
             <p style="font-size: 2rem; color: rgb(153, 0, 0); text-align: center; text-shadow: 0 0 5px rgba(139, 0, 0, 0.5), 0 0 10px rgba(139, 0, 0, 0.3); animation: floatSlow 5s infinite ease-in-out, pulseSlow 3s infinite ease-in-out;">
@@ -93,6 +95,18 @@
 <button id="back-button" style="font-family: 'Special Elite', monospace;" onclick="goBack3()">←</button>
 <button id="skip-button" onclick="skipToEnd()">⏭</button>
 <script>
+    const soundTrack2 = document.getElementById('soundtrack2');
+    function stopSound(sound) {
+            sound.pause();
+            sound.currentTime = 0;
+    }
+    function playSound(sound) {
+        if (sound.paused) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+    playSound(soundTrack2);
     // Pause marquee on hover
 const marquees = document.querySelectorAll(".hover-marquee");
 

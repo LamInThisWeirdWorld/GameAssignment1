@@ -222,6 +222,7 @@
     </head>
     <body style="background: url(static-tv-head.gif); background-size: cover; background-color: rgb(255, 255, 255);" jf-observer-attached="true">
         <audio id="soundtrack" src="sounds/11. Hide 'n' Seek.wav" preload="auto" loop></audio>
+        <audio id="glitch1" src="sounds/horror_01_drone_glitch_37.wav" preload="auto" loop></audio>
         <div id="foreground-heading"><p class="glitch">
                 <span aria-hidden="true">Fragmented</span>
                 Meet Elliot
@@ -237,6 +238,7 @@
 
 <script>
     const soundTrack = document.getElementById('soundtrack');
+    const glitch1 = document.getElementById('glitch1');
     function stopSound(sound) {
             sound.pause();
             sound.currentTime = 0;
@@ -247,6 +249,7 @@
             sound.play();
         }
     }
+    playSound(glitch1);
     function update(e){
         var x = e.clientX || e.touches[0].clientX;
         var y = e.clientY || e.touches[0].clientY;

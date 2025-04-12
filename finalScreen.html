@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
         <title>Document</title>
         <style>
             #end-screen {
@@ -23,6 +24,7 @@
             }
 
             #end-message {
+                font-family: 'Special Elite', monospace;
                 font-size: 2.5em;
                 text-align: center;
                 margin-bottom: 30px;
@@ -73,6 +75,7 @@
         </style>
     </head>
     <body>
+        <audio id="glitch2" src="sounds/horror_01_drone_glitch_45.wav" preload="auto" loop></audio>
         <div id="end-screen" style="display: none;">
             <div id="end-message">Are you ready for the journey?</div>
             <button id="continue-btn">Yes</button>
@@ -80,11 +83,30 @@
     </body>
 
     <script>
+        const glitch2 = document.getElementById('glitch2');
+        function stopSound(sound) {
+                sound.pause();
+                sound.currentTime = 0;
+        }
+        function playSound(sound) {
+            if (sound.paused) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+        }
+        playSound(glitch2);
+        const continueButton = document.getElementById('continue-btn');
         window.onload = function () {
         setTimeout(() => {
             document.getElementById('end-screen').style.display = 'flex';
         }, 500); // 0.5 second delay for glitch flash
-    }
+        }
+        continueButton.addEventListener("click", function () {
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = "gameMechanism.html";
+                }, 1000);
+            });
     </script>
     
     

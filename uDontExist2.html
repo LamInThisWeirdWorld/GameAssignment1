@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="uDontExistStyles.css">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
 </head>
+<audio id="soundtrack2" src="sounds/5. The Amicable Apparition.wav" preload="auto" loop></audio>
 <body style="transition: all 1s ease-in-out; font-family: 'Special Elite', monospace; background-image: none; background-color: rgb(255, 255, 255);">
     <div id="calm-container" style="text-align: center; margin-top: 50px;">
     <p id="calm-instruction" style="font-size: 1.5rem; transition: opacity 0.5s ease-in-out; opacity: 0; color: white; text-shadow: 0 0 5px rgba(139, 0, 0, 0.5);">
@@ -30,6 +31,20 @@
 
 <audio src="8bit.mp3" autoplay loop></audio>
 <script>
+
+// const soundTrack2 = document.getElementById('soundtrack2');
+//     function stopSound(sound) {
+//             sound.pause();
+//             sound.currentTime = 0;
+//     }
+//     function playSound(sound) {
+//         if (sound.paused) {
+//             sound.currentTime = 0;
+//             sound.play();
+//         }
+//     }
+//     playSound(soundTrack2);
+    
     let isCalm = false; // Track if Elliot is calm
 const animationContainer = document.getElementById("animation-container");
 const calmInstruction = document.getElementById("calm-instruction");

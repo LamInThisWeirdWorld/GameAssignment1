@@ -19,6 +19,7 @@
 </style>
 </head>
 <body style="font-family: 'Special Elite', monospace; background-image: url(moving-formation2.gif); background-color: rgb(255, 255, 255);">
+    <audio id="soundtrack2" src="sounds/5. The Amicable Apparition.wav" preload="auto" loop></audio>
     <div id="question">
     <p style="font-size: 1rem; color: red; text-shadow: 0 0 5px white, 0 0 10px gray; animation: glitch 5s infinite;">
         Do I... know you???
@@ -37,5 +38,20 @@
 <!-- Back arrow button -->
 <button id="back-button" style="font-family: 'Special Elite', monospace;" onclick="goBack4()">←</button>
 <audio src="8bit.mp3" autoplay loop></audio>
+
+    <script>
+    const soundTrack2 = document.getElementById('soundtrack2');
+    function stopSound(sound) {
+            sound.pause();
+            sound.currentTime = 0;
+    }
+    function playSound(sound) {
+        if (sound.paused) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+    playSound(soundTrack2);
+    </script>
 </body>
 </html>

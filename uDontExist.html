@@ -19,6 +19,7 @@
 </style>
 </head>
 <body style="font-family: 'Special Elite', monospace; background-image: url(moving-formation2.gif); background-color: rgb(255, 255, 255);">
+    <audio id="soundtrack2" src="sounds/5. The Amicable Apparition.wav" preload="auto" loop></audio>
     <div id="overlay"></div> 
     <div align="center" style="position:relative; bottom:1px; color:#033">
         <marquee behavior=scroll direction=down scrollamount=5 scrolldelay=16 height=532 style='position:absolute; left:88%; top:197px; width:100; height:532px;'>
@@ -88,5 +89,28 @@
 <button id="back-button" style="font-family: 'Special Elite', monospace;" onclick="goBack()">←</button>
 <button id="skip-button" onclick="skipToEnd()">⏭</button>
 <audio src="8bit.mp3" autoplay loop></audio>
+
+<script>
+    const soundTrack2 = document.getElementById('soundtrack2');
+    function stopSound(sound) {
+            sound.pause();
+            sound.currentTime = 0;
+    }
+    function playSound(sound) {
+        if (sound.paused) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('audioTime', bgAudio.currentTime);
+    });
+
+    // Optional: save time continuously (more precise)
+    setInterval(() => {
+        localStorage.setItem('audioTime', bgAudio.currentTime);
+    }, 500);
+    playSound(soundTrack2);
+</script>
 </body>
 </html>
