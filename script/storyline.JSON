@@ -1,0 +1,9 @@
+{
+    "start": {
+        "text": "Hi, nice to meet you. Who are you",
+        "choice": [
+            {"text": "Someone who cares", "next": ""},
+            {"text": "Assignment marker", "next": "start"}
+        ]
+    }
+}

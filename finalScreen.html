@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            #end-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                color: black;
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Special Elite', monospace;
+                animation: glitchFlash 0.8s infinite, shakeScreen 0.4s infinite;
+            }
+
+            #end-message {
+                font-size: 2.5em;
+                text-align: center;
+                margin-bottom: 30px;
+                color: black;
+            }
+
+            #continue-btn {
+                font-size: 1.5em;
+                padding: 15px 30px;
+                background: black;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-family: 'Special Elite', monospace;
+                transition: all 0.3s ease;
+            }
+
+            #continue-btn:hover {
+                background: red;
+                color: black;
+                transform: scale(1.1);
+            }
+
+            /* Optional glitch-style flash */
+            @keyframes glitchFlash {
+                0%   { background: black; opacity: 1; }
+                10%  { background: white; opacity: 0.7; }
+                20%  { background: #999; opacity: 1; }
+                30%  { background: black; opacity: 0.5; }
+                40%  { background: #eee; opacity: 1; }
+                50%  { background: #ccc; opacity: 0.6; }
+                60%  { background: black; opacity: 1; }
+                70%  { background: white; opacity: 0.3; }
+                80%  { background: #aaa; opacity: 1; }
+                90%  { background: black; opacity: 0.6; }
+                100% { background: white; opacity: 1; }
+            }
+
+            @keyframes shakeScreen {
+                0%   { transform: translate(0px, 0px) scale(1); }
+                20%  { transform: translate(2px, -2px) scale(1.01); }
+                40%  { transform: translate(-2px, 2px) scale(1.02); }
+                60%  { transform: translate(2px, 2px) scale(0.99); }
+                80%  { transform: translate(-2px, -2px) scale(1); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="end-screen" style="display: none;">
+            <div id="end-message">Are you ready for the journey?</div>
+            <button id="continue-btn">Yes</button>
+        </div>    
+    </body>
+
+    <script>
+        window.onload = function () {
+        setTimeout(() => {
+            document.getElementById('end-screen').style.display = 'flex';
+        }, 500); // 0.5 second delay for glitch flash
+    }
+    </script>
+    
+    
+</html>
