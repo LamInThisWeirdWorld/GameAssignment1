@@ -51,6 +51,9 @@
             text-align: center;
             border: 2px solid white; /* Add a border around the entire table */
         }
+    body a:hover {
+        animation: glitch 725ms infinite;
+    }
 
 #ending-table th, #ending-table td {
     border: 1px solid white; /* Add borders to table cells */
@@ -107,7 +110,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity here */
     z-index: 1; /* Ensure the overlay is below the table */
     pointer-events: none; /* Allow interaction with content below */
 
@@ -284,6 +287,53 @@ body h2, #ending-table th {
         -0.04em -0.025em 0 #fffc00;
     }
   }
+
+  #thank-you-message {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        #thank-you-message h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #thank-you-message p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        #thank-you-message a {
+            color: rgb(255, 82, 82);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        #thank-you-message a:hover { /* Lighter gray on hover */
+            color: red;
+            font-size: 1.5em;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        #gif-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 100; /* Ensure it appears above all other elements */
+}
+
+#gif-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the GIF covers the entire screen */
+}
     </style>
 </head>
 <body>
@@ -443,6 +493,21 @@ body h2, #ending-table th {
         </tbody>
     </table>
 <br><br><br>
+<div id="thank-you-message">
+    <h1>Thank You for Staying with Us Till the End!</h1>
+    <p>We hope you enjoyed this game teaser of <a href="#" onclick="playGifAndRedirect()">Fragmented</a> by stepping into Elliot's mind and engaging with him.</p>
+    
+    
+</div>
+<footer style="text-align: center; color: white; font-size: 1rem; padding: 10px; background-color: rgba(0, 0, 0, 0.7); border-top: 1px solid white;">
+    
+    <p>© 2025 Remaking Reality. All rights reserved.</p>
+    <p>Created by <a href="https://github.com/Skylar-KyiShinKhant"  style="color: rgb(0, 186, 40);text-decoration: none;">Skylar</a> &
+        <a href="https://github.com/LamInThisWeirdWorld"  style="color: rgb(60, 154, 222); text-decoration: none;">Lam</a></p>
+</footer>
+<div id="gif-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 100;">
+    <img src="eye1.gif" alt="Elliot's Mind">
+</div>
     <script>
         // Gradually reduce the overlay opacity from 1 to 0.6
         setTimeout(() => {
@@ -490,6 +555,46 @@ setTimeout(stampEffect, 500);
                 window.location.href = "finalScreen.html"; // Ensure next.html exists in the same directory
             }, 500);
         }
+
+        function playGifAndRedirect() {
+    // Show the GIF overlay
+    const gifOverlay = document.getElementById("gif-overlay");
+    gifOverlay.style.display = "block";
+
+    // Wait for 5 seconds, then redirect to index.html
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 3000); // 5000ms = 5 seconds
+}
+// Show the end screen after a delay
+window.onload = function () {
+            setTimeout(() => {
+                autoScroll();
+            }, 4000); // 0.5 second delay for glitch flash
+
+            // Start auto-scrolling
+            
+        };
+
+function autoScroll() {
+        const scrollSpeed = 50; // Adjust the speed of scrolling (higher = slower)
+        const scrollStep = 1; // Number of pixels to scroll per step
+        let autoScrolling = true;
+
+        function scroll() {
+            if (autoScrolling && window.scrollY + window.innerHeight < document.body.scrollHeight) {
+                window.scrollBy(0, scrollStep); // Scroll down by the specified step
+                setTimeout(scroll, scrollSpeed); // Repeat the scroll after the specified speed
+            }
+        }
+
+        scroll();
+    }
+
+    // Stop auto-scroll on user interaction
+    window.addEventListener("scroll", () => {
+            autoScrolling = false;
+        });
     </script>
 </body>
 </html>
