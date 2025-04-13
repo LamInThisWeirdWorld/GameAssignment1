@@ -7,43 +7,69 @@
         "choices": {}
       },
       "start_choices": {
-        "text": "<dialogue>'Do I... know you?'</dialogue>",
+        "text": "<dialogue>Do I... know you?</dialogue>",
         "hasChoices": true,
         "choices": {
           "Yes, we’ve met before.": "memory_flicker",
-          "No, but I want to know you.": "elliot_reacts_1"
+          "No, but I want to know you.": "elliot_reacts"
         }
       },
       "memory_flicker": {
-        "text": "Elliot tilts his head: <dialogue>'That’s strange... I don’t remember meeting you. But I feel like I should.'</dialogue>",
+        "text": "Elliot tilts his head...",
+        "hasChoices": false,
+        "next": "memory_flicker1",
+        "choices": {}
+      },
+      "memory_flicker1": {
+        "text": "<dialogue>That’s strange... I don’t remember meeting you. But I feel like I should.</dialogue>",
         "hasChoices": false,
         "next": "memory_flicker_choice",
         "choices": {}
       },
       "memory_flicker_choice": {
-        "text": "His fingers tap nervously on the desk: <dialogue>'Do you remember my brother?'</dialogue>",
+        "text": "His fingers tap nervously on the desk.",
+        "hasChoices": false,
+        "next": "memory_flicker_choice1",
+        "choices": {}
+      },
+      "memory_flicker_choice1": {
+        "text": "TAP- TAP- TAP- TAP-- <dialogue>Do you remember my brother?</dialogue>",
         "hasChoices": true,
         "choices": {
           "Yes, I remember him.": "glitch_twin",
           "You never had a brother.": "elliot_denial"
         }
       },
+      "elliot_reacts": {
+        "text": "His voice wavers...",
+        "hasChoices": false,
+        "next": "elliot_reacts_1",
+        "choices": {
+        }
+      },
       "elliot_reacts_1": {
-        "text": "His voice wavers: <dialogue>'I think I want to know me too.'</dialogue>  <dialogue>'I had a brother, you know. Always there for me. Always...'</dialogue>",
+        "text": "<dialogue>I think I want to know me too. I had a brother, you know. Always there for me. Always...</dialogue>",
         "hasChoices": false,
         "next": "elliot_reacts_2",
         "choices": {
         }
       },
       "elliot_reacts_2": {
-        "text": "<dialogue>'Wait. That’s not right.'</dialogue>",
+        "text": "<dialogue>Wait. That’s not right.</dialogue>",
         "hasChoices": false,
         "next": "elliot_reacts_choices",
         "choices": {
         }
       },
       "elliot_reacts_choices": {
-        "text": " The room flickers. The walls change color: <dialogue>'Who are you?'</dialogue>",
+        "text": "He paused and looked at you with suspious eyes.",
+        "hasChoices": false,
+        "next": "elliot_reacts_choices1",
+        "choices": {
+        }
+      },
+      "elliot_reacts_choices1": {
+        "text": "<dialogue>Who are you?</dialogue>",
         "hasChoices": true,
         "choices": {
           "I’m here to help.": "trust_question_choices",
@@ -51,13 +77,26 @@
         }
       },
       "glitch_twin": {
-        "text": "The lights dim. The words on the blackboard shift into unreadable symbols. Elliot grips his head: <dialogue>'He was real. He was real. He was—'</dialogue>",
+        "text": "Elliot started to breath rapidly and griped his head with his hands trembled.",
+        "hasChoices": false,
+        "next": "glitch_twin1",
+        "choices": {}
+      },
+      "glitch_twin1": {
+        "text": "<dialogue>He was real. He was real. He was—</dialogue>",
         "hasChoices": false,
         "next": "glitch_twin_choices",
         "choices": {}
       },
       "glitch_twin_choices": {
-        "text": "His voice distorts. A shadow appears behind him, mirroring his movements: <dialogue>'You see him, don’t you?'</dialogue>",
+        "text": "His voice distorts. His eyes darted around the room in panic.",
+        "hasChoices": false,
+        "next": "glitch_twin_choices1",
+        "choices": {
+        }
+      },
+      "glitch_twin_choices1": {
+        "text": "<dialogue>You see him, don’t you?</dialogue>",
         "hasChoices": true,
         "choices": {
           "Yes, he’s right behind you.": "truth_revealed",
@@ -65,21 +104,41 @@
         }
       },
       "elliot_denial": {
-        "text": "Elliot laughs, but his eyes dart around the room. <dialogue>'That’s funny. You almost sound like them. The others. They say the same thing. That he wasn’t real. But he was. I remember him.'</dialogue>",
+        "text": "Elliot laughs, but his eyes dart around the room.",
+        "hasChoices": false,
+        "next": "elliot_denial1",
+        "choices": {}
+      },
+      "elliot_denial1": {
+        "text": "HAHAHAHA.. <dialogue>That’s funny. You almost sound like them. The others. They say the same thing. That he wasn’t real. But he was. I remember him.</dialogue>",
         "hasChoices": false,
         "next": "elliot_denial_choices",
         "choices": {}
       },
       "elliot_denial_choices": {
-        "text": " His expression darkens. <dialogue>'Unless... they made me forget?'</dialogue>",
+        "text": " His expression saddens.",
+        "hasChoices": false,
+        "next": "elliot_denial_choices1",
+        "choices": {
+        }
+      },
+      "elliot_denial_choices1": {
+        "text": "<dialogue>But... why do I remember nothing else except his existence?</dialogue>",
         "hasChoices": true,
         "choices": {
-          "Who made you forget?": "truth_revealed",
+          "Who do you believe is responsible for his disappearance?": "truth_revealed",
           "Elliot, think carefully. He never existed.": "distortion_warning"
         }
       },
       "trust_question_choices": {
-        "text": "Elliot leans in with his eyes flickering between fear and something unreadable. <dialogue>'Do you trust me?'</dialogue>",
+        "text": "Elliot leans in with his eyes flickering between fear and something unreadable.",
+        "hasChoices": false,
+        "next": "trust_question_choices1",
+        "choices": {
+        }
+      },
+      "trust_question_choices1": {
+        "text": "<dialogue>Do you trust me?</dialogue>",
         "hasChoices": true,
         "choices": {
           "Yes, I trust you.": "truth_revealed",
@@ -87,67 +146,87 @@
         }
       },
       "new_conspiracy": {
-        "text": "Elliot’s expression shifts from fear to realization. Faint voices whisper from nowhere. <dialogue>'Wait... you’re lying.'</dialogue> ",
-        "hasChoices": false,
-        "next": "new_conspiracy_choice",
-        "choices": {}
-      },
-      "new_conspiracy_choice": {
-        "text": "<dialogue>'They erased him. They erased HIM.' </dialogue>His breathing quickens.<dialogue>' And they’ll erase you too if you keep asking.'</dialogue>",
-        "hasChoices": true,
-        "choices": {
-          "Who is 'they'?": "conspiracy_deepens",
-          "Elliot, calm down.": "distortion_warning"
-        }
-      },
-      "conspiracy_deepens": {
-        "text": "The fluorescent lights above flicker violently. A faint sound, like distant footsteps, echoes through the hall. Elliot grips your wrist.",
-        "hasChoices": false,
-        "next": "conspiracy_deepens_choices",
-        "choices": {}
-      },
-      "conspiracy_deepens_choices": {
-        "text": "<dialogue>'Listen to me. He was taken. Not by time. Not by memory. By THEM. The teachers. The students. Everyone plays along.'</dialogue>",
-        "hasChoices": true,
-        "choices": {
-          "Why would they do that?": "truth_revealed",
-          "This is all in your head, Elliot.": "distortion_warning"
-        }
-      },
+    "text": "Elliot’s expression shifts from confusion to despair. His hands tremble as faint whispers echo in the room, growing louder.",
+    "hasChoices": false,
+    "next": "new_conspiracy_choice",
+    "choices": {}
+},
+"new_conspiracy_choice": {
+    "text": "<dialogue>No... this doesn’t make sense. It can’t be true. I remember him. I KNOW I do.</dialogue>",
+    "hasChoices": true,
+    "choices": {
+        "Elliot, think carefully.": "conspiracy_deepens",
+        "You’re lying to yourself.": "distortion_warning"
+    }
+},
+"conspiracy_deepens": {
+    "text": "His voice cracks, and tears well up in his eyes.",
+    "hasChoices": false,
+    "next": "conspiracy_deepens2",
+    "choices": {}
+},
+"conspiracy_deepens2": {
+    "text": "<dialogue>I remember his voice, his laugh... but why can’t I remember anything else?</dialogue>",
+    "hasChoices": false,
+    "next": "conspiracy_deepens3",
+    "choices": {
+    }
+},
+"conspiracy_deepens3": {
+    "text": "His voice softens, filled with sadness.",
+    "hasChoices": false,
+    "next": "conspiracy_deepens_choices",
+    "choices": {
+    }
+},
+"conspiracy_deepens_choices": {
+    "text": "<dialogue>Am I losing my mind?</dialogue>",
+    "hasChoices": true,
+    "choices": {
+        "You need to face the truth.": "truth_revealed",
+        "It’s all in your head, Elliot.": "distortion_warning"
+    }
+},
       "truth_revealed": {
-        "text": "A door creaks open behind Elliot. Inside, endless monitors show footage of him—alone. Talking to himself. Every conversation he remembers... is just him.",
-        "hasChoices": false,
-        "next": "truth_revealed_2",
-        "choices": {}
-      },
-      "truth_revealed_2": {
-        "text": "But there’s another screen. A blurry figure, face censored, being dragged away. <dialogue>'No... No, that’s not...'</dialogue>",
-        "hasChoices": false,
-        "next": "truth_revealed_3",
-        "choices": {}
-      },
-      "truth_revealed_3": {
-        "text": "The screen flickers. The experiment logs update. <dialogue>'Subject Elliot—progressing as expected.'</dialogue>",
-        "hasChoices": false,
-        "next": "truth_revealed_choices",
-        "choices": {}
-      },
-      "truth_revealed_choices": {
-        "text": " ",
-        "hasChoices": true,
-        "choices": {
-          "Step inside the room.": "cliffhanger",
-          "Close the door.": "cliffhanger"
-        }
-      },
+    "text": "A door creaks open behind Elliot, revealing monitors looping fragmented footage of him and his brother—some laughing, others filled with anger.",
+    "hasChoices": false,
+    "next": "truth_revealed_2_dialogue",
+    "choices": {}
+},
+"truth_revealed_2_dialogue": {
+    "text": "<dialogue>Was it me? Did I... push him away?</dialogue>",
+    "hasChoices": false,
+    "next": "truth_revealed_3",
+    "choices": {}
+},
+"truth_revealed_3": {
+    "text": "The monitors glitch, and a distorted voice echoes.... GUILT IS A HEAVY BURDEN, ELLIOT. BUT IS IT THE TRUTH?",
+    "hasChoices": false,
+    "next": "truth_revealed_3_dialogue",
+    "choices": {}
+},
+"truth_revealed_3_dialogue": {
+    "text": "Elliot stares at the screens, his breathing uneven.",
+    "hasChoices": false,
+    "next": "truth_revealed_choices",
+    "choices": {}
+},
+"truth_revealed_choices": {
+    "text": "<dialogue>What should I do?</dialogue>",
+    "hasChoices": true,
+    "choices": {
+        "Uncover the truth about his brother.": "cliffhanger",
+        "Piece together his fragmented mind.": "cliffhanger"
+    }
+},
       "distortion_warning": {
-        "text": "The screen glitches. A distorted voice crackles: 'You were never supposed to remember.' The air vibrates with an unnatural hum.",
+        "text": "Elliot looks at you, furious.",
         "hasChoices": false,
         "next": "distortion_warning_2",
         "choices": {}
       },
       "distortion_warning_2": {
-        "text": "Elliot looks at you, terrified: <dialogue>'It’s watching us.'</dialogue>",
+        "text": "<dialogue>YOU TOOK HIM AWAY, DIDN'T YOU?</dialogue>",
         "hasChoices": false,
         "next": "distortion_warning_choices",
         "choices": {}
@@ -156,12 +235,12 @@
         "text": " ",
         "hasChoices": true,
         "choices": {
-          "Run.": "cliffhanger",
-          "Face it.": "cliffhanger"
+          "Deny it": "cliffhanger",
+          "Convince him his brother never existed.": "cliffhanger"
         }
       },
       "cliffhanger": {
-      "text": "Elliot’s voice echoes: <dialogue>'It’s too late. They’re here.'</dialogue>",
+      "text": " ",
       "hasChoices": false,
       "choices": {}
     }

@@ -33,11 +33,13 @@
 
             #continue-btn {
                 font-size: 1.5em;
-                padding: 15px 30px;
+                padding: 15px;
                 background: black;
                 color: white;
                 border: none;
                 cursor: pointer;
+                transition: all 0.3s ease;
+                border-radius: 10px;
                 font-family: 'Special Elite', monospace;
                 transition: all 0.3s ease;
             }
@@ -77,10 +79,10 @@
     <body>
         <audio id="glitch2" src="sounds/horror_01_drone_glitch_45.wav" preload="auto" loop></audio>
         <div id="end-screen" style="display: none;">
-            <div id="end-message">Are you ready for the journey?</div>
-            <button id="continue-btn">Yes</button>
+            <div id="end-message">Are you ready to face the TRUTH?</div>
+            <button id="continue-btn">Bet!</button>
         </div>    
-    </body>
+
 
     <script>
         const glitch2 = document.getElementById('glitch2');
@@ -107,7 +109,11 @@
                     window.location.href = "gameMechanism.html";
                 }, 1000);
             });
+
+        // Auto-scroll the page
+        
+
     </script>
-    
+        </body>
     
 </html>
