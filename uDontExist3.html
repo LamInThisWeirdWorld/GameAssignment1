@@ -95,6 +95,18 @@
 <button id="back-button" style="font-family: 'Special Elite', monospace;" onclick="goBack3()">←</button>
 <button id="skip-button" onclick="skipToEnd()">⏭</button>
 <script>
+    let isSkipped = false;
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {   
+            // skipToEnd();
+            if (!isSkipped) {
+                isSkipped = true;
+                skipToEnd();
+            } else {
+                goNext3();
+            } 
+        }
+    });
     // const soundTrack2 = document.getElementById('soundtrack2');
     // function stopSound(sound) {
     //         sound.pause();

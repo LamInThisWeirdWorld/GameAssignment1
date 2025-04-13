@@ -32,7 +32,7 @@
         </button>
     </p>
     <br><br><br>
-    <p id="demo" style="font-size: 1.5rem; text-shadow: 0 0 5px red, 0 0 10px gray;"></p>
+    <p id="demo" style="font-size: 1.5rem; text-shadow: 0 0 5px #ffbcbc, 0 0 10px #ff2525;"></p>
     </div>
     <button id="next-button" style="font-family: 'Special Elite', monospace;" onclick="goNext4()">→</button>
 <!-- Back arrow button -->
@@ -40,18 +40,23 @@
 <audio src="8bit.mp3" autoplay loop></audio>
 
     <script>
-    const soundTrack2 = document.getElementById('soundtrack2');
-    function stopSound(sound) {
-            sound.pause();
-            sound.currentTime = 0;
-    }
-    function playSound(sound) {
-        if (sound.paused) {
-            sound.currentTime = 0;
-            sound.play();
+        document.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {   
+            goNext4();
         }
-    }
-    playSound(soundTrack2);
+        });
+    // const soundTrack2 = document.getElementById('soundtrack2');
+    // function stopSound(sound) {
+    //         sound.pause();
+    //         sound.currentTime = 0;
+    // }
+    // function playSound(sound) {
+    //     if (sound.paused) {
+    //         sound.currentTime = 0;
+    //         sound.play();
+    //     }
+    // }
+    // playSound(soundTrack2);
     </script>
 </body>
 </html>

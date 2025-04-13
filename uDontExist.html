@@ -91,6 +91,18 @@
 <audio src="8bit.mp3" autoplay loop></audio>
 
 <script>
+    let isSkipped = false;
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {   
+            // skipToEnd();
+            if (!isSkipped) {
+                isSkipped = true;
+                skipToEnd();
+            } else {
+                goNext();
+            } 
+        }
+    });
     const soundTrack2 = document.getElementById('soundtrack2');
     function stopSound(sound) {
             sound.pause();
