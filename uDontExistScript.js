@@ -1,5 +1,26 @@
 const contents = document.querySelectorAll(".content");
 // Skip to the final state
+// const soundTrack2 = document.getElementById('soundtrack2');
+function stopSound(sound) {
+        sound.pause();
+        sound.currentTime = 0;
+}
+function playSound(sound) {
+    if (sound.paused) {
+        sound.currentTime = 0;
+        sound.volume = 0.3;
+        sound.play();
+    }
+}
+
+setInterval(() => {
+  if (!soundTrack2.paused) {
+      localStorage.setItem('soundtrackTime', soundTrack2.currentTime);
+  }
+}, 1000);
+
+// playSound(soundTrack2);
+
 window.skipToEnd = function () {
     isSkipped = true; // Set the skip flag to true
 

@@ -2,7 +2,6 @@
 <head>
 <title>Rumors & Thoughts</title>
 <script src="responsivenessHandler.js"></script>
-<script src="uDontExistScript.js"></script>
 <link rel="stylesheet" href="uDontExistStyles.css">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
@@ -45,7 +44,14 @@
             goNext4();
         }
         });
-    // const soundTrack2 = document.getElementById('soundtrack2');
+    const soundTrack2 = document.getElementById('soundtrack2');
+    const savedTime = localStorage.getItem('soundtrackTime');
+
+    if (savedTime) {
+        soundTrack2.currentTime = parseFloat(savedTime) + 0.9;
+    }
+
+    soundTrack2.play().catch(e => console.log("Autoplay failed:", e))
     // function stopSound(sound) {
     //         sound.pause();
     //         sound.currentTime = 0;
@@ -58,5 +64,6 @@
     // }
     // playSound(soundTrack2);
     </script>
+    <script src="uDontExistScript.js"></script>
 </body>
 </html>

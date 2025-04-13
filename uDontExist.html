@@ -2,7 +2,6 @@
 <head>
 <title>Rumors & Thoughts</title>
 <script src="responsivenessHandler.js"></script>
-<script src="uDontExistScript.js"></script>
 <link rel="stylesheet" href="uDontExistStyles.css">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturMaguntia&family=Nosifer&family=Fredericka+the+Great&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
@@ -111,18 +110,28 @@
     function playSound(sound) {
         if (sound.paused) {
             sound.currentTime = 0;
+            sound.volume = 0.3;
             sound.play();
         }
     }
-    window.addEventListener('beforeunload', () => {
-        localStorage.setItem('audioTime', bgAudio.currentTime);
-    });
+    const savedTime = localStorage.getItem('soundtrackTime');
 
-    // Optional: save time continuously (more precise)
-    setInterval(() => {
-        localStorage.setItem('audioTime', bgAudio.currentTime);
-    }, 500);
-    playSound(soundTrack2);
+    if (savedTime) {
+        soundTrack2.currentTime = parseFloat(savedTime);
+    }
+
+    soundTrack2.play().catch(e => console.log("Autoplay failed:", e));
+
+    // window.addEventListener('beforeunload', () => {
+    //     localStorage.setItem('audioTime', bgAudio.currentTime);
+    // });
+
+    // // Optional: save time continuously (more precise)
+    // setInterval(() => {
+    //     localStorage.setItem('audioTime', bgAudio.currentTime);
+    // }, 500);
+    // playSound(soundTrack2);
 </script>
+<script src="uDontExistScript.js"></script>
 </body>
 </html>
