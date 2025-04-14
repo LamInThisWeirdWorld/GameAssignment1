@@ -33,7 +33,7 @@
         "choices": {}
       },
       "memory_flicker_choice1": {
-        "text": "TAP- TAP- TAP- TAP-- <dialogue>Do you remember my brother?</dialogue>",
+        "text": "TAP- TAP- TAP- TAP--  <dialogue>Do you remember him? My brother?</dialogue>",
         "hasChoices": true,
         "choices": {
           "Yes, I remember him.": "glitch_twin",
@@ -62,7 +62,7 @@
         }
       },
       "elliot_reacts_choices": {
-        "text": "He paused and looked at you with suspious eyes.",
+        "text": "He paused and looked at you with suspicious eyes.",
         "hasChoices": false,
         "next": "elliot_reacts_choices1",
         "choices": {
@@ -73,23 +73,23 @@
         "hasChoices": true,
         "choices": {
           "I’m here to help.": "trust_question_choices",
-          "I don’t know anymore.": "glitch_twin"
+          "That doesn’t matter. Tell me about your brother.": "glitch_twin"
         }
       },
       "glitch_twin": {
-        "text": "Elliot started to breath rapidly and griped his head with his hands trembled.",
+        "text": "Elliot's breathing rapidly. His fingers claw at his skull as if trying to dig something out.",
         "hasChoices": false,
         "next": "glitch_twin1",
         "choices": {}
       },
       "glitch_twin1": {
-        "text": "<dialogue>He was real. He was real. He was—</dialogue>",
+        "text": "<dialogue>He’s real. I know. I’m not crazy. I’m not—</dialogue>",
         "hasChoices": false,
         "next": "glitch_twin_choices",
         "choices": {}
       },
       "glitch_twin_choices": {
-        "text": "His voice distorts. His eyes darted around the room in panic.",
+        "text": "His voice fractures, skipping like a broken recording. His eyes twitch toward corners only he can see.",
         "hasChoices": false,
         "next": "glitch_twin_choices1",
         "choices": {
@@ -110,7 +110,7 @@
         "choices": {}
       },
       "elliot_denial1": {
-        "text": "HAHAHAHA.. <dialogue>That’s funny. You almost sound like them. The others. They say the same thing. That he wasn’t real. But he was. I remember him.</dialogue>",
+        "text": "Laughter bursts from him—dry and wrong. <dialogue>HAHAHAHA...That’s funny. You almost sound like them. The others. They say the same thing. That he wasn’t real. But he was. I remember him.</dialogue>",
         "hasChoices": false,
         "next": "elliot_denial_choices",
         "choices": {}
@@ -127,7 +127,7 @@
         "hasChoices": true,
         "choices": {
           "Who do you believe is responsible for his disappearance?": "truth_revealed",
-          "Elliot, think carefully. He never existed.": "distortion_warning"
+          "Elliot… you’re remembering a ghost.": "distortion_warning"
         }
       },
       "trust_question_choices": {

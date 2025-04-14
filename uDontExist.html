@@ -114,13 +114,13 @@
             sound.play();
         }
     }
-    const savedTime = localStorage.getItem('soundtrackTime');
+    // const savedTime = localStorage.getItem('soundtrackTime');
 
-    if (savedTime) {
-        soundTrack2.currentTime = parseFloat(savedTime);
-    }
+    // if (savedTime) {
+    //     soundTrack2.currentTime = parseFloat(savedTime);
+    // }
 
-    soundTrack2.play().catch(e => console.log("Autoplay failed:", e));
+    // soundTrack2.play().catch(e => console.log("Autoplay failed:", e));
 
     // window.addEventListener('beforeunload', () => {
     //     localStorage.setItem('audioTime', bgAudio.currentTime);
@@ -130,7 +130,7 @@
     // setInterval(() => {
     //     localStorage.setItem('audioTime', bgAudio.currentTime);
     // }, 500);
-    // playSound(soundTrack2);
+    playSound(soundTrack2);
 </script>
 <script src="uDontExistScript.js"></script>
 </body>
