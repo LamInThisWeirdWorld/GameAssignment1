@@ -5,14 +5,14 @@ Meet Elliot is a short pitch experience that offers a glimpse into the full game
 <details> 
 <summary>Table of Contents</summary>
 
-- [About The Project]()
-- [Built with]()
-- [Getting Started]()
-- [Prerequisites]()
-- [Setting up]()
-- [Contributing]()
-- [License]()
-- [Contact]()
+- [About The Project](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#about-the-project)
+- [Built with](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#built-with)
+- [Getting Started](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#getting-started)
+- [Prerequisites](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#prerequisites)
+- [Setting up](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#setting-up)
+- [Contributing](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#contributing)
+- [License](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#license)
+- [Contacts](https://github.com/LamInThisWeirdWorld/fragmented/tree/main#contacts)
 
 </details>
 
