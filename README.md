@@ -65,7 +65,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more details.
 ## Contacts
 <p>Name : Skylar Kyi Shin Khant</p>
 <p>Email : kyishinkhant2003@gmail.com</p>
-
+<br>
 <p>Name : Ngoc Thanh Lam Nguyen</p>
 <p>Email : thlamlam1715@gmail.com</p>
 <p>Project Link : https://github.com/LamInThisWeirdWorld/fragmented</p>
