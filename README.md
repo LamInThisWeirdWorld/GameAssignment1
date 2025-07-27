@@ -1,5 +1,7 @@
 # [Meet Elliot](https://laminthisweirdworld.github.io/fragmented/)
 
+> 🎮 *Click the title above to play the game pitch!*
+
 Meet Elliot is a short pitch experience that offers a glimpse into the full game. You’ll play as Elliot, a character on a journey to find his missing brother while slowly regaining fragments of his lost memory. This pitch is a standalone demo designed for the Samba Band course and creative game prototyping.
 
 <details> 
